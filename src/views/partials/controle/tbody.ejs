@@ -1,0 +1,127 @@
+<% const options = { year: 'numeric', month: 'numeric', day: 'numeric' } %>
+<% if (processos.length > 0) { %>
+<input type="hidden" value="<%=csrfToken%>" id="_second-csrf">
+<input type="hidden" value="<%= processos[0].table_id%>" id="table_id">
+
+<% processos.forEach((processo, index) => { %>
+  <% let color %>
+  <% if (processo.status === 'assinado') { %>
+    <tr id="row-<%= index %>" class="bg-green-600 border-b border-green-400 hover:bg-green-500 hidden-tr-table">
+  <% } %>
+  <% if (processo.status === 'minutado') { %>
+    <tr id="row-<%= index %>" class="bg-purple-800 border-b border-purple-400 hover:bg-purple-500 hidden-tr-table">
+  <% } %>
+  <% if (processo.status === 'conversao') { %>
+    <tr id="row-<%= index %>" class="bg-red-800 border-b border-red-400 hover:bg-red-500 hidden-tr-table">
+  <% } %>
+  <% if (processo.status === 'em_exame_assessor') { %>
+    <tr id="row-<%= index %>" class="bg-gray-600 border-b border-gray-300 hover:bg-gray-500 hidden-tr-table">
+  <% } %>
+  <% if (processo.status === 'em_exame_juiz') { %>
+    <tr id="row-<%= index %>" class="bg-yellow-600 border-b border-yellow-400 hover:bg-yellow-500 hidden-tr-table">
+  <% } %>
+  <% if (processo.status === 'sem_analise') { %>
+    <tr id="row-<%= index %>" class="bg-blue-600 border-b border-blue-400 hover:bg-blue-500 hidden-tr-table">
+  <% } %>
+    <td class="w-2/12 px-2 py-4 text-center font-bold cursor-pointer select-processo" title="clique para copiar"> <%= processo.numero %>  </td>
+    <td class="w-1/12 px-2 py-4 text-center select-juizo"> <%= processo.juizo %>  </td>
+    <td class="w-1/12 px-2 py-4 text-center select-assunto"> <%= processo.assunto %>  </td>
+    <td class="w-1/12 px-2 py-4 text-center select-localizador"> <%= processo.localizador %>  </td>
+    <td class="w-1/12 px-2 py-4 text-center select-cls"> <%= processo.cls.toLocaleDateString('pt-BR', options) %> </td>
+    <% const diffInMs = Date.now() - processo.cls %>
+    <% const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24)) %>
+    <td class="w-1/12 px-2 py-4 text-center select-dias"> <%= diffInDays %> </td>
+    <td class="w-1/12 px-2 py-4 text-center">
+      <select name="sigla" id="<%= processo._id %>" row-number="<%= index %>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        <% if (processo.sigla === 'nao_atribuido') { %>
+          <option selected value="nao_atribuido">Não atribuido</option>
+        <% } else { %>
+          <option value="nao_atribuido">Não atribuido</option> %>
+        <% } %>
+        <% if (processo.sigla === 'DDC23') { %>
+          <option selected value="DDC23">DDC23</option>
+          <% } else { %>
+            <option value="DDC23">DDC23</option> %>
+          <% } %>
+        <% if (processo.sigla === 'VIN11') { %>
+          <option selected value="VIN11">VIN11</option>
+        <% } else { %>
+          <option value="VIN11">VIN11</option>
+        <% } %>
+        <% if (processo.sigla === 'LSI') { %>
+          <option selected value="LSI">LSI</option>
+        <% } else { %>
+          <option value="LSI">LSI</option>
+        <% } %>
+        <% if (processo.sigla === 'DBI') { %>
+          <option selected value="DBI">DBI</option>
+        <% } else { %>
+          <option value="DBI">DBI</option>
+        <% } %>
+        <% if (processo.sigla === 'RMC') { %>
+          <option selected value="RMC">RMC</option>
+        <% } else { %>
+          <option value="RMC">RMC</option>
+        <% } %>
+        <% if (processo.sigla === 'LFM') { %>
+          <option selected value="LFM">LFM</option>
+        <% } else { %>
+          <option value="LFM">LFM</option> %>
+        <% } %>
+      </select>
+    </td>
+    <td class="w-1/12 px-2 py-4 text-center">
+      <select name="status" id="<%= processo._id %>" row-number="<%= index %>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 select-status">
+        <% if (processo.status === 'sem_analise') { %>
+          <option selected value="sem_analise">Sem análise</option>
+        <% } else { %>
+          <option value="sem_analise">Sem análise</option>
+        <% } %>
+        <% if (processo.status === 'minutado') { %>
+          <option selected value="minutado">Minutado</option>
+        <% } else { %>
+          <option value="minutado">Minutado</option>
+        <% } %>
+        <% if (processo.status === 'assinado') { %>
+          <option selected value="assinado">Assinado</option>
+        <% } else { %>
+          <option value="assinado">Assinado</option>
+        <% } %>
+        <% if (processo.status === 'em_exame_assessor') { %>
+          <option selected value="em_exame_assessor">Em exame pelo assessor</option>
+        <% } else { %>
+          <option value="em_exame_assessor">Em exame pelo assessor</option>
+        <% } %>
+        <% if (processo.status === 'em_exame_juiz') { %>
+          <option selected value="em_exame_juiz">Em exame pelo magistrado</option>
+        <% } else { %>
+          <option value="em_exame_juiz">Em exame pelo magistrado</option>
+        <% } %>
+        <% if (processo.status === 'conversao') { %>
+          <option selected value="conversao">Conversão em diligência</option>
+        <% } else { %>
+          <option value="conversao">Conversão em diligência</option>
+        <% } %>
+      </select>
+    </td>
+    <td class="w-1/12 px-2 py-4 text-center">
+      <button type="button" id="<%= processo._id %>" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 select-deletar-processo">Deletar</button>
+    </td>
+    <td class="w-2/12 px-0 py-4">
+      <div class="flex items-center rounded-lg">
+          <textarea rows="1" id="comentario-<%= processo._id %>" class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 h-fit" placeholder="Comentário..."><%= processo.comentario %></textarea>
+          <button type="submit" id="<%= processo._id %>" class="inline-flex justify-center p-2 text-white rounded-full cursor-pointer hover:bg-blue-100 select-comentario">
+            <svg style="pointer-events: none" aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path style="pointer-events: none" d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+            <span style="pointer-events: none" class="sr-only">Enviar</span>
+          </button>
+      </div>
+    </td>
+  </tr>
+  <% }) %>
+<% } else { %>
+    <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
+      <span class="font-medium">A pesquisa não retornou processos!</span>
+    </div>
+    <input type="hidden" value="<%=csrfToken%>" id="_second-csrf">
+    <input type="hidden" value="<%=id%>" id="table_id">
+  <% } %>

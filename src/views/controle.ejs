@@ -1,0 +1,15 @@
+<%- include('./partials/index/head') %>
+<%- include('./partials/index/svgcode') %>
+<body id="body">
+  <%- include('./partials/index/navMenu') %>
+  <div id="my-workbench" class="grid grid-cols-3 mt-14 mb-6 items-start justify-evenly">
+    <%- include('./partials/controle/savedTables', { tables }) %>
+    <%- include('./partials/controle/chart') %>
+    <%- include('./partials/controle/dropZone') %>
+  </div>
+  <%- include('./partials/controle/searchMenu') %>
+  <%- include('./partials/controle/alertExcluded') %>
+  <%- include('./partials/controle/table') %>
+  <%- include('./partials/index/footer') %>
+</body>
+</html>

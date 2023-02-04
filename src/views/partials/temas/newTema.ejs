@@ -1,0 +1,36 @@
+<button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="m-auto w-10/12 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center flex justify-center " type="button">Novo tema<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+  <input type="hidden" value="<%=csrfToken%>" id="_third-csrf">
+  <div id="dropdown" class="hidden flex justify-center z-50 divide-y p-3 divide-gray-100 rounded shadow w-4/12 bg-white ring-2 ring-blue-500">
+    <div class="flex items-center flex-col gap-y-7 animate__animated animate__fadeIn w-10/12 z-9 rounded-lg self-center mb-5">
+      <h5 class="text-3xl text-blue-800 text-center w-full font-bold mb-2 rounded-lg border-blue-600">Incluir novo tema</h5>
+      <div class="relative z-0 w-full mb-1 group">
+        <input type="text" name="tema" id="new-tema-name" class="mb-3 block py-2.5 px-0 w-full text-sm text-gray-900 border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="new-tema-name" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nome do tema</label>
+      </div>
+      <div class="relative z-0 w-full mb-1 group">
+        <input type="text" name="tema" id="new-tema-texto-description" class="mb-3 block py-2.5 px-0 w-full text-sm text-gray-900 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="new-tema-description" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Descrição</label>
+      </div>
+      <div class="relative z-0 w-full mb-1 group">
+        <textarea name="texto" id="new-tema-texto-content" rows="2" class="mb-3 block py-6 px-0 w-full text-sm text-gray-900 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required ></textarea>
+        <label for="new-tema-texto" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Texto</label>
+      </div>
+      <div class="relative z-0 w-full mb-1 group">
+        <select name="tipo" id="new-tema-juizo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 select-tema-type" placeholder="Tipo">
+          <option value="substituto" selected>Substituto</option>
+          <option value="federal">Federal</option>
+        </select>
+      </div>
+      <div class="relative z-0 w-full mb-1 group">
+        <select name="tipo" id="new-tema-texto-type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 select-tema-type" placeholder="Tipo">
+          <option value="tempo_especial" selected>Tempo especial</option>
+          <option value="tempo_rural">Tempo rural</option>
+          <option value="tempo_urbano">Tempo urbano</option>
+        </select>
+      </div>
+      <button type="submit" id="submit-new-tema" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-20 py-2.5 text-center">Enviar</button>
+    </div>
+  </div>
+
+
+

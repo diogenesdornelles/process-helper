@@ -1,0 +1,42 @@
+<nav class="flex sticky top-0 z-50 bg-white border-gray-200 px-2 sm:px-4 rounded border-t  shadow" id="nav-menu">
+  <div class="container flex items-center justify-between mx-auto">
+    <input type="hidden" value="<%= csrfToken %>" name="_csrf" class="_csrf" id="_first-csrf">
+    <% if (page === 'home') { %>
+      <%- include('./logoHome') %>
+    <% } %>
+    <% if (page === 'controle') { %>
+      <%- include('../controle/logoControle') %>
+    <% } %>
+    <% if (page === 'tema') { %>
+      <%- include('../temas/logoText') %>
+    <% } %>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul class="flex flex-col items-center border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white ">
+        <li>
+          <a href="/" class="block text-xl py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 " aria-current="page">Home</a>
+        </li>
+        <li>
+          <a href="/tema" class="block text-xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Temas</a>
+        </li>
+        <li>
+          <a href="#" class="block text-xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Sobre</a>
+        </li>
+        <li>
+          <a href="/controle" class="block text-xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Controle</a>
+        </li>
+        <li>
+          <a href="#" class="block text-xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Utilidades</a>
+        </li>
+        <li>
+          <a href="#" class="block text-xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Diversos</a>
+        </li>
+        <li>
+          <a href="#" class="block text-xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Contato</a>
+        </li>
+        <li>
+          <button id="to-top-anchor" class="m-auto w-full mb-6 mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center flex justify-center " type="button">Retornar ao topo<svg class="w-4 h-4 ml-2 rotate-180" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

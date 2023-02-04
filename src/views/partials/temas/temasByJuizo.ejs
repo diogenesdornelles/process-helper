@@ -1,0 +1,22 @@
+<button id="dropdownDefaultTemasJuizo" data-dropdown-toggle="dropdownTemasJuizo" class="m-auto w-10/12 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center flex justify-center " type="button">Tema por juizo<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+<div id="dropdownTemasJuizo" class="hidden flex justify-center z-10 divide-y divide-gray-100 rounded shadow w-2/12 bg-white ring-2 ring-blue-500">
+  <div class="flex items-center flex-col gap-y-7 animate__animated animate__fadeIn z-9 rounded-lg self-center w-full">
+    <ul class="py-2 text-sm text-gray-700 w-full text-center" aria-labelledby="dropdownDefaultTemasJuizo">
+      <% if ( temas.length > 0 ) { %>
+        <% const juizos = temas.map(tema => { %>
+            <% return tema.juizo %>
+        <% }) %>
+        <% const juizosFiltered = juizos.filter(juizo => { %>
+          <% if (juizo) return juizo %>
+        <% }) %>
+        <% const juizoSet = new Set(juizosFiltered) %>
+        <% juizoSet.forEach(juizo => { %>
+          <li>
+            <% const juizoF = juizo.replace('_', ' ') %>
+            <a href="<%= juizo %>" class="block font-bold px-4 py-2 hover:bg-gray-100 select-anchor-tema-juizo"><%= juizoF.toUpperCase() %> </a>
+          </li>
+        <% }) %>
+      <% } %>
+    </ul>
+  </div>
+</div>

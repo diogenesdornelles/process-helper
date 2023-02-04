@@ -1,0 +1,11 @@
+{
+  "verbose": true,
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules"
+  ],
+  "delay": 2500,
+  "execMap": {
+    "js": "node -r sucrase/register"
+  }
+}

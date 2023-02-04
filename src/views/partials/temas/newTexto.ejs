@@ -1,0 +1,16 @@
+<div id="form-new-texto" class="hidden absolute left-2/4 z-50 items-center flex-col gap-y-2 animate__animated animate__fadeIn w-5/12 rounded-lg bg-white p-8 ring-2 ring-blue-500" style="top: 50vh">
+  <strong class="text-3xl w-fit px-0 cursor-pointer alert-del hover:bg-red-200 self-end rounded-full" id="close-new-texto">
+    &times;
+  </strong>
+  <h5 class="text-3xl text-blue-800 text-center w-full font-bold  rounded-lg border-blue-600">Incluir novo texto</h5>
+  <div class="relative z-0 w-full mb-1 group">
+    <input type="text" name="tema" id="new-texto-description" class="mb-3 block py-2.5 px-0 w-full text-sm text-gray-900 border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+    <label for="new-tema-description" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Descrição</label>
+  </div>
+  <div class="relative z-0 w-full mb-1 group">
+    <textarea name="text" id="new-texto-content" rows="2" class="mb-3 block py-6 px-0 w-full text-sm text-gray-900 border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required ></textarea>
+    <label for="new-tema-texto" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Texto</label>
+  </div>
+  <button type="submit" id="submit-new-texto" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-20 py-2.5 text-center ">Enviar</button>
+</div>
+

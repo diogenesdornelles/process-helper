@@ -1,0 +1,36 @@
+<div id="menu-search" class="flex sticky z-50 top-40 justify-around bg-white items-baseline rounded-2xl">
+  <button class="w-1/12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" id="btn-filtrar">Filtrar</button>
+  <div class="pb-4 bg-white  m-5 p-0" id="search-processo">
+    <label for="table-search" class="sr-only">Search</label>
+    <div class="relative mt-1">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg class="w-5 h-5 text-gray-500 " aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+        </div>
+        <input type="text" id="table-search-processo" class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " placeholder="Busca por processo">
+    </div>
+  </div>
+  <div class="flex pb-4 bg-white  m-5 p-0" id="search-sigla">
+    <select name="sigla" id="table-search-sigla" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Busca por sigla">
+      <option value="nao_atribuido" selected>Não atribuido</option>
+      <option value="DDC23">DDC23</option>
+      <option value="VIN11">VIN11</option>
+      <option value="LSI">LSI</option>
+      <option value="DBI">DBI</option>
+      <option value="RMC">RMC</option>
+      <option value="LFM">LFM</option>
+      <option value="todos">TODOS</option>
+    </select>
+  </div>
+  <div class="flex pb-4 bg-white  m-5 p-0" id="search-status">
+    <select name="status" id="table-search-status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " >
+      <option selected value="sem_analise">Não iniciado</option>
+      <option value="minutado">Minutado</option>
+      <option value="assinado">Assinado</option>
+      <option value="em_exame_assessor">Em exame pelo assessor</option>
+      <option value="em_exame_juiz">Em exame pelo magistrado</option>
+      <option value="conversao">Conversão em diligência</option>
+      <option value="todos">TODOS</option>
+    </select>
+  </div>
+  <button class="w-1/12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 btn-delete-table">Deletar tabela</button>
+</div>

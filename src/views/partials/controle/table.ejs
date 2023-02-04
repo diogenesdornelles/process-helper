@@ -1,0 +1,20 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg m-6" id="table-container">
+  <% if (typeof processos !== 'undefined') { %>
+  <h2 class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"> Tabela: <%= tablenum %> </h2>
+  <table  id="my-table" class="mb-96 w-full text-sm text-left text-blue-100" table-num="<%= tablenum %>">
+    <thead class="text-xs text-white uppercase bg-blue-800 " id="thead">
+      <tr id="tr-head">
+        <%- include('./trhead') %>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      <%- include('./tbody') %>
+    </tbody>
+  </table>
+  <% } else { %>
+    <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+      <p class="font-bold">Carregue uma tabela.</p>
+      <p class="text-sm">Faça o upload e clique no card acima.</p>
+    </div>
+  <% } %>
+</div>

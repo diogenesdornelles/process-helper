@@ -1,0 +1,13 @@
+<div id="my-saved-tables" class="grid min-w-0 w-full h-28 ml-3 grid-cols-5 gap-1">
+  <% if (temas.lenght === 0) { %>
+    <h5 class="text-xl text-blue-800 text-center w-full font-bold mb-2 rounded-lg border-blue-600">Sem temas disponíveis</h5>
+  <% } else { %>
+    <% temas.forEach((tema, index) => { %>
+      <a href="#" id="<%= tema._id %>" class="flex flex-col w-full p-2 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 select-saved-tema" tema-num="<%= index + 1 %>">
+        <h5 class="mb-2 text-xl font-normal tracking-tight text-gray-900 " style="pointer-events: none">Tema:</h5>
+        <p class="font-extrabold text-gray-700 " style="pointer-events: none"><%=tema.name%></p>
+        <p class="font-normal text-gray-700 " style="pointer-events: none"><%=tema._type%></p>
+      </a>
+      <% }) %>
+   <% } %>
+</div>
