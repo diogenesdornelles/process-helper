@@ -3,19 +3,19 @@ import 'regenerator-runtime/runtime'
 import './assets/css/style.css'
 import './assets/css/styleHome.css'
 import Controle from './assets/modules/Controle'
-import Temas from './assets/modules/Temas'
-import Textos from './assets/modules/Textos'
-import Editor from './assets/modules/Editor'
+import Editor from './assets/modules/pageTemasModules/editor/Editor'
+import ControllFrontEndAccordion from './assets/modules/pageTemasModules/ControllFrontEndAccordion'
+import ControllFrontEndTema from './assets/modules/pageTemasModules/ControllFrontEndTema'
+import ControllFrontEndTexto from './assets/modules/pageTemasModules/ControllFrontEndTexto'
 
 window.onload = () => {
   if (window.location.pathname === '/controle') {
-    const controle = new Controle()
-    controle.init()
+    new Controle().init()
   }
   if (window.location.pathname === '/tema') {
     Editor.init()
-    Temas.accordionStart()
-    Temas.init()
-    Textos.init()
+    ControllFrontEndAccordion.start()
+    ControllFrontEndTema.start()
+    ControllFrontEndTexto.start()
   }
 }

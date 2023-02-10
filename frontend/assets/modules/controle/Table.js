@@ -1,9 +1,9 @@
+import textareaAutoExpand from '../pageTemasModules/utils/textareaAutoExpand'
 import addChart from './addChart'
 import addObserverTr from './addObserverTr'
+import copyProcessNumber from './copyProcessNumber'
 import fieldsAddListeners from './fieldsAddListeners'
 import setBtnDelTable from './setBtnDelTable'
-import textareaAutoExpand from '../textarea/textareaAutoExpand'
-import copyProcessNumber from './copyProcessNumber'
 
 export default class Table {
   constructor () {
