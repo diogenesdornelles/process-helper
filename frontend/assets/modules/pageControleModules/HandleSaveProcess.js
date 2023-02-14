@@ -69,7 +69,7 @@ export default class handleSaveProcess {
         } else {
           alert('erro')
         }
-      })
+      }, { once: true })
     } else {
       alert('É necessário carregar uma tabela antes!')
     }

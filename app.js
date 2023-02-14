@@ -11,6 +11,8 @@ import processoRoutes from './src/routes/processoRoutes'
 import controleRoutes from './src/routes/controleRoutes'
 import temaRoutes from './src/routes/temaRoutes'
 import textoRoutes from './src/routes/textoRoutes'
+import mediaLogRoutes from './src/routes/mediaLogRoutes'
+import chemistriesRoutes from './src/routes/chemistriesRoutes'
 import sessionOptions from './src/configs/db.config'
 
 class App {
@@ -47,6 +49,8 @@ class App {
     this.app.use('/processo/', processoRoutes)
     this.app.use('/tema/', temaRoutes)
     this.app.use('/texto/', textoRoutes)
+    this.app.use('/media-logaritmica/', mediaLogRoutes)
+    this.app.use('/quimicos/', chemistriesRoutes)
   }
 }
 

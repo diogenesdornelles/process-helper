@@ -112,7 +112,7 @@ class HandleTema {
     } catch (e) { console.log(e) }
   }
 
-  async removeColor () {
+  removeColor () {
     const indicators = document.querySelectorAll('.select-tema-indicator')
     indicators.forEach(_indicator => {
       _indicator.classList.remove('text-blue-700')
@@ -120,29 +120,12 @@ class HandleTema {
     })
   }
 
-  async addColor (el1, el2) {
+  addColor (el1, el2) {
     el1.classList.add('text-blue-700')
     el2.classList.add('bg-blue-700')
   }
 
-  async addObserverTemaIndicators () {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        let id = entry.target.getAttribute('id')
-        id = id.split('-').splice(-1)[0]
-        const indicator = document.querySelector(`TIME[tema-id="${id}"]`)
-        indicator.classList.toggle('text-blue-700', entry.isIntersecting)
-        indicator.parentElement.querySelector('DIV').classList.toggle('bg-blue-700', entry.isIntersecting)
-      })
-    },
-    {
-      rootMargin: '-125px'
-    })
-    const headingsSelected = document.querySelectorAll('.container-one-tema')
-    headingsSelected.forEach((element) => observer.observe(element))
-  }
-
-  async indicators (el) {
+  indicators (el) {
     const temaId = el.getAttribute('tema-id')
     const btn = document.querySelector(`BUTTON[tema-id="${temaId}"]`)
     this.removeColor()

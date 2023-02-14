@@ -127,9 +127,7 @@ export default class ControllFrontEndTexto {
     })
     content.addEventListener('input', async (e) => {
       try {
-        const search = () => handler.search(e.target.value, juizo.value, type.value)
-        // eslint-disable-next-line no-undef
-        _.debounce(search, 800) 
+        await handler.search(e.target.value, juizo.value, type.value)
       } catch (e) { console.log(e) }
     })
   }

@@ -1,0 +1,29 @@
+<div id="container-calc-avg" class="grid gap-6 mb-6 md:grid-cols-3 w-11/12 mx-auto mt-20 animate__animated animate__fadeIn ">
+  <div id="table-nr14">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3">Nome</th>
+          <th scope="col" class="px-6 py-3">Informações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% nr15data.forEach(item => { %>
+          <tr class="bg-white border-b">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"><%= item[0] %></th>
+            <% if (item[1]) { %>
+            <td class="px-6 py-4"><%= ...item[1] %></td>
+            <% } %>
+            <% if (item[2]) { %>
+              <td class="px-6 py-4"><%= ...item[2] %></td>
+            <% } %>
+          </tr>
+        <% }) %>
+
+      </tbody>
+  </div>
+  <div id="table-acgih" class="grid gap-6 mb-6 md:grid-cols-2 w-full mx-auto">
+  </div>
+  <div id="table-infos" class="grid gap-6 mb-6 md:grid-cols-2 w-full mx-auto">
+  </div>
+</div>

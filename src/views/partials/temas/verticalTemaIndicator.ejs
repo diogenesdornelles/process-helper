@@ -3,9 +3,8 @@
   <% if ( temas.length > 0 ) { %>
     <% temas.forEach((tema) => { %>
       <li class="mb-5 ml-4">
-          <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white"></div>
-          <time tema-id="<%= tema._id %>" id="tema-indicator-<%= tema._id %>" class="mb-1 text-sm font-normal leading-none text-gray-400 hover:text-blue-700 cursor-pointer select-tema-indicator"><%= tema.name %> </time>
-          <p class="mb-4 text-base font-normal text-gray-500"><% tema._type %></p>
+          <div class="bg-gray-200 absolute w-3 h-3 rounded-full mt-1.5 -left-1.5 border border-white" id="tema-div-indicator-<%= tema._id %>"></div>
+          <time tema-id="<%= tema._id %>" id="tema-indicator-<%= tema._id %>" class="text-gray-400 mb-1 text-sm font-normal leading-none hover:text-blue-700 cursor-pointer select-tema-indicator"><%= tema.name %> </time>
       </li>
     <% }) %>
     <% } %>

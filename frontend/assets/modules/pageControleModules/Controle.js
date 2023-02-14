@@ -1,7 +1,7 @@
-import Processo from './controle/Processo'
-import HandleSaveProcess from './controle/HandleSaveProcess'
-import Table from './controle/Table'
-import uploadProcess from './controle/uploadProcess'
+import HandleSaveProcess from './HandleSaveProcess'
+import Processo from './Processo'
+import Table from './Table'
+import uploadProcess from './uploadProcess'
 
 export default class Controle {
   constructor () {
@@ -100,6 +100,23 @@ export default class Controle {
     })
   }
 
+  setHideMenuSearch () {
+    this.hidded = false
+    const menu = document.querySelector('#menu-search')
+    const btn = document.querySelector('#btn-hide-menu-search')
+    btn.addEventListener('click', (e) => {
+      if (!this.hidded) {
+        menu.style.transform = 'translateX(-87.5%)'
+        e.target.innerText = 'Mostrar'
+        this.hidded = true
+      } else {
+        menu.style.transform = 'translateX(0%)'
+        e.target.innerText = 'Ocultar'
+        this.hidded = false
+      }
+    })
+  }
+
   init () {
     this.setFieldProcess()
     this.setFieldSigla()
@@ -108,5 +125,6 @@ export default class Controle {
     this.setFieldTables()
     this.setToTopFunc()
     this.setNewProcess()
+    this.setHideMenuSearch()
   }
 }

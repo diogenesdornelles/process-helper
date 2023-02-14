@@ -1,27 +1,29 @@
 <% if ( temas.length > 0 ) { %>
   <!-- Incluir novo drop com cards dos temas para seleção -->
-  <div class="flex flex-col justify-items-center items-center w-11/12 m-auto mt-20 mb-20 gap-20">
+  <div class="flex flex-col justify-items-center items-center w-11/12 m-auto mt-20 mb-20 gap-20 animate__animated animate__fadeIn">
     <div class="grid grid-cols-2 justify-items-center items-center w-11/12 m-auto gap-2">
       <%- include('./tabTemas') %>
       <%- include('./temasByType') %>
       <%- include('./temasByJuizo') %>
       <%- include('./btnGetAll') %>
-      <%- include('./newTema') %>
       <%- include('./editor') %>
+      <%- include('./newTema') %>
     </div>
     <div class="w-10/12 flex flex-col gap-y-3">
       <%- include('./searchTexto') %>
     </div>
   </div>
-  <%- include('./temaInstructions') %>
 <% } %>
 <%- include('./newTexto') %>
-<div class="flex">
-  <div id="accordion-container" data-accordion="collapse" class="mt-10 mb-48 w-11/12">
+<div class="flex z-0 justify-center" id="temas-content">
+  <div id="accordion-container" data-accordion="collapse" class="mt-10 mb-48 w-10/12">
     <%- include('./bellows') %>
   </div>
   <div class="flex flex-col fixed top-32 right-1 mt-10 mb-48 w-1/12 overflow-auto p-2">
     <%- include('./verticalTemaIndicator') %>
+  </div>
+  <div class="flex flex-col fixed top-32 left-9 mt-10 mb-48 w-1/12 overflow-auto p-2">
+    <%- include('./verticalPageIndicator') %>
   </div>
 </div>
 

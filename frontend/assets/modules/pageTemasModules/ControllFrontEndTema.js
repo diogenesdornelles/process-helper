@@ -1,21 +1,50 @@
 import handler from './temas/HandleTema'
+// import hideContent from './temas/hideContent'
 import setToTopFunc from './utils/setToTopFunc'
 import textareaAutoExpand from './utils/textareaAutoExpand'
+import moveToTopElement from './utils/moveToTopElement'
 
 export default class ControllFrontEndTema {
-  static async fireSave () {
-    document.querySelector('#dropdownDefaultButton').addEventListener('click', async () => {
-      document.querySelector('#submit-new-tema').addEventListener('click', async () => {
+  static fireSave () {
+    const dropdownBtn = document.querySelector('#dropdownDefaultButton')
+    dropdownBtn.addEventListener('click', () => {
+      const content = document.querySelector('#temas-content')
+      const dropdown = document.querySelector('#dropdown')
+      moveToTopElement(dropdown)
+      dropdown.addEventListener('click', (e) => {
+        e.stopPropagation()
+        content.style.display = 'none'
+      })
+      const input = document.querySelector('#new-tema-name')
+      input.addEventListener('click', () => {
+        const divs = document.querySelectorAll('div-hidded')
+        divs.forEach(div => {
+          div.classList.toggle('block')
+        })
+      })
+      dropdownBtn.addEventListener('focusout', () => {
+        content.style.display = 'block'
+      })
+      if (content.style.display === 'none') {
+        content.style.display = 'block'
+      }
+      document.addEventListener('click', (e) => {
+        if (e.target !== dropdown) {
+          content.style.display = 'block'
+        }
+      })
+      const submit = document.querySelector('#submit-new-tema')
+      submit.addEventListener('click', async () => {
         try {
           await handler.save()
         } catch (e) { console.log(e) }
       }, { once: true })
-    }, { once: true })
+    })
   }
 
-  static async fireUpdate () {
+  static fireUpdate () {
     const btns = document.querySelectorAll('.anchor-update-tema')
-    btns.forEach(async btn => {
+    btns.forEach(btn => {
       btn.addEventListener('click', async (e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -26,9 +55,9 @@ export default class ControllFrontEndTema {
     })
   }
 
-  static async fireDelete () {
+  static fireDelete () {
     const btns = document.querySelectorAll('.anchor-delete-tema')
-    btns.forEach(async btn => {
+    btns.forEach(btn => {
       btn.addEventListener('click', async (e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -39,7 +68,7 @@ export default class ControllFrontEndTema {
     })
   }
 
-  static async fireList () {
+  static fireList () {
     try {
       document.querySelector('#dropdownDefaultButtonTemasList').addEventListener('click', async () => {
         await handler.getList()
@@ -47,7 +76,7 @@ export default class ControllFrontEndTema {
     } catch (err) { console.error(err) }
   }
 
-  static async fireAll () {
+  static fireAll () {
     document.querySelector('#get-all-temas').addEventListener('click', async () => {
       try {
         await handler.getAll()
@@ -55,9 +84,9 @@ export default class ControllFrontEndTema {
     }, { once: true })
   }
 
-  static async fireType () {
+  static fireType () {
     const types = document.querySelectorAll('.select-anchor-tema-type')
-    types.forEach(async type => {
+    types.forEach(type => {
       type.addEventListener('click', async (e) => {
         e.preventDefault()
         try {
@@ -67,9 +96,9 @@ export default class ControllFrontEndTema {
     })
   }
 
-  static async fireJuizo () {
+  static fireJuizo () {
     const juizos = document.querySelectorAll('.select-anchor-tema-juizo')
-    juizos.forEach(async juizo => {
+    juizos.forEach(juizo => {
       juizo.addEventListener('click', async (e) => {
         e.preventDefault()
         try {
@@ -111,15 +140,36 @@ export default class ControllFrontEndTema {
   }
 
   static fireIndicators () {
-    handler.addObserverTemaIndicators()
     const indicators = document.querySelectorAll('.select-tema-indicator')
-    indicators.forEach(async indicator => {
-      indicator.addEventListener('click', async (e) => {
-        try {
-          await handler.indicators(e.target)
-        } catch (e) { console.log(e) }
+    indicators.forEach(indicator => {
+      indicator.addEventListener('click', (e) => {
+        handler.indicators(e.target)
       })
     })
+  }
+
+  static fireObserver () {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        let id = entry.target.getAttribute('id')
+        id = id.split('-').splice(-1)[0]
+        const indicator = document.querySelector(`TIME[tema-id="${id}"]`)
+        indicator.classList.toggle('text-blue-600', entry.isIntersecting)
+        const divIndicator = document.querySelector(`#tema-div-indicator-${id}`)
+        if (entry.isIntersecting && divIndicator.classList.contains('bg-gray-200')) {
+          divIndicator.classList.remove('bg-gray-200')
+          divIndicator.classList.add('bg-blue-600')
+        } else {
+          divIndicator.classList.add('bg-gray-200')
+          divIndicator.classList.remove('bg-blue-600')
+        }
+      })
+    },
+    {
+      rootMargin: '-125px'
+    })
+    const observeds = document.querySelectorAll('.container-one-tema')
+    observeds.forEach((element) => observer.observe(element))
   }
 
   static start () {
@@ -132,6 +182,7 @@ export default class ControllFrontEndTema {
     ControllFrontEndTema.fireJuizo()
     ControllFrontEndTema.fireEdit()
     ControllFrontEndTema.fireIndicators()
+    ControllFrontEndTema.fireObserver()
     setToTopFunc()
     textareaAutoExpand()
   }

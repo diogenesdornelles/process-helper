@@ -22,7 +22,9 @@ export default function fieldsAddListeners () {
   const deleteProcessosSelected = document.querySelectorAll('.select-deletar-processo')
   deleteProcessosSelected.forEach(selectEl => {
     selectEl.addEventListener('click', (e) => {
-      Processo.delete(e.target)
+      if (confirm('Deseja deletar o processo?')) {
+        Processo.delete(e.target)
+      }
     })
   })
 }
