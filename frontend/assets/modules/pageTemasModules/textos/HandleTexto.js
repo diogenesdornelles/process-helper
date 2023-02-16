@@ -1,8 +1,8 @@
-import Editor from '../editor/Editor'
-import texto from './Texto'
+import Editor from '../ControllSubjectEditor'
+import ControllSubjectTexto from '../ControllSubjectTexto'
 import tema from '../temas/Tema'
-import ControllFrontEndTexto from '../ControllFrontEndTexto'
 import reinitApp from '../utils/reinitApp'
+import texto from './Texto'
 
 class HandleTexto {
   async copy (el) {
@@ -72,17 +72,21 @@ class HandleTexto {
   }
 
   async search (content, juizo, type) {
+    const temas = document.querySelector('#temas-content')
     try {
       if (!content) {
         document.querySelector('#search-result').innerHTML = ''
+        temas.style.display = 'flex'
         return
       }
       const result = await texto.show(content, juizo, type)
       if (result) {
+        temas.style.display = 'none'
         document.querySelector('#search-result').innerHTML = result
-        ControllFrontEndTexto.fireCopyResult()
+        ControllSubjectTexto.fireCopyResult()
       } else {
         document.querySelector('#search-result').innerHTML = ''
+        temas.style.display = 'flex'
       }
     } catch (e) { console.log(e) }
   }

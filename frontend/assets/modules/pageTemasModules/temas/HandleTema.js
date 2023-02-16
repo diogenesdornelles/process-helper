@@ -40,14 +40,15 @@ class HandleTema {
   }
 
   async getOne (el) {
-    const temaId = el.target.getAttribute('id')
+    const temaId = el.getAttribute('id')
     try {
       const data = await tema.getOne(temaId)
       if (data) {
         document.querySelector('#accordion-container').innerHTML = data
-        alert('Tema carregado!')
         reinitApp()
         document.querySelector('#dropdownList').classList.add('hidden')
+        const btn = document.querySelector(`BUTTON[tema-id="${temaId}"]`)
+        moveToTopElement(btn)
       }
     } catch (e) { console.log(e) }
   }
@@ -79,8 +80,9 @@ class HandleTema {
       const data = await tema.getAll()
       if (data) {
         document.querySelector('#accordion-container').innerHTML = data
-        alert('Temas carregados!')
         reinitApp()
+        const div = document.querySelector('#accordion-container')
+        moveToTopElement(div)
       }
     } catch (e) { console.log(e) }
   }
@@ -92,9 +94,10 @@ class HandleTema {
         const data = await tema.getType(e.target.href)
         if (data) {
           document.querySelector('#accordion-container').innerHTML = data
-          alert('Tipo de tema carregado!')
           reinitApp()
           document.querySelector('#dropdownDefaultTemasType').click()
+          const div = document.querySelector('#accordion-container')
+          moveToTopElement(div)
         }
       } catch (e) { console.log(e) }
     }, { once: true })
@@ -105,9 +108,10 @@ class HandleTema {
       const data = await tema.getJuizo(juizo)
       if (data) {
         document.querySelector('#accordion-container').innerHTML = data
-        alert('Temas por juizo carregado!')
         reinitApp()
         document.querySelector('#dropdownDefaultTemasJuizo').click()
+        const div = document.querySelector('#accordion-container')
+        moveToTopElement(div)
       }
     } catch (e) { console.log(e) }
   }
@@ -132,6 +136,30 @@ class HandleTema {
     this.addColor(el, el.parentElement.querySelector('DIV'))
     btn.click()
     moveToTopElement(btn)
+  }
+
+  observers () {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        let id = entry.target.getAttribute('id')
+        id = id.split('-').splice(-1)[0]
+        const indicator = document.querySelector(`TIME[tema-id="${id}"]`)
+        indicator.classList.toggle('text-blue-600', entry.isIntersecting)
+        const divIndicator = document.querySelector(`#tema-div-indicator-${id}`)
+        if (entry.isIntersecting && divIndicator.classList.contains('bg-gray-200')) {
+          divIndicator.classList.remove('bg-gray-200')
+          divIndicator.classList.add('bg-blue-600')
+        } else {
+          divIndicator.classList.add('bg-gray-200')
+          divIndicator.classList.remove('bg-blue-600')
+        }
+      })
+    },
+    {
+      rootMargin: '-125px'
+    })
+    const observeds = document.querySelectorAll('.container-one-tema')
+    observeds.forEach((element) => observer.observe(element))
   }
 }
 

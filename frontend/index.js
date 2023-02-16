@@ -3,23 +3,25 @@ import 'regenerator-runtime/runtime'
 import './assets/css/input.css'
 import './assets/css/style.css'
 import Controle from './assets/modules/pageControleModules/Controle'
-import ControllFrontEndAccordion from './assets/modules/pageTemasModules/ControllFrontEndAccordion'
-import ControllFrontEndTema from './assets/modules/pageTemasModules/ControllFrontEndTema'
-import ControllFrontEndTexto from './assets/modules/pageTemasModules/ControllFrontEndTexto'
-import Editor from './assets/modules/pageTemasModules/editor/Editor'
-import ControllFrontEndUtilities from './assets/modules/pageUtilitiesModules/ControllFrontEndUtilities'
+import ControllSubjectAccordion from './assets/modules/pageTemasModules/ControllSubjectAccordion'
+import ControllSubjectEditor from './assets/modules/pageTemasModules/ControllSubjectEditor'
+import ControllSubjectPage from './assets/modules/pageTemasModules/ControllSubjectPage'
+import ControllSubjectTema from './assets/modules/pageTemasModules/ControllSubjectTema'
+import ControllSubjectTexto from './assets/modules/pageTemasModules/ControllSubjectTexto'
+import ControllSubjectUtilities from './assets/modules/pageTemasModules/ControllSubjectUtilities'
 
 window.onload = () => {
   if (window.location.pathname === '/controle') {
     new Controle().init()
   }
   if (window.location.pathname === '/tema') {
-    Editor.init()
-    ControllFrontEndAccordion.start()
-    ControllFrontEndTema.start()
-    ControllFrontEndTexto.start()
+    ControllSubjectEditor.start()
+    ControllSubjectAccordion.start()
+    ControllSubjectTema.start()
+    ControllSubjectTexto.start()
+    ControllSubjectPage.start()
   }
   if (window.location.pathname === '/utilidades') {
-    ControllFrontEndUtilities.start()
+    ControllSubjectUtilities.start()
   }
 }
