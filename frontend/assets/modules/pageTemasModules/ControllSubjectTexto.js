@@ -20,29 +20,36 @@ export default class ControllSubjectTexto {
     })
   }
 
-  static async submit (temaId) {
-    const btnSubmit = document.querySelector('#submit-new-texto')
-    btnSubmit.addEventListener('click', async () => {
+  static async submit (temaId, _modal, el) {
+    async function save () {
       try {
-        await handler.save(temaId)
+        if (await handler.save(temaId)) {
+          _modal.close()
+          moveToTopElement(el)
+        } else {
+          ControllSubjectTexto.submit(temaId, _modal)
+        }
       } catch (e) { console.log(e) }
-    }, { once: true })
+    }
+    const btnSubmit = document.querySelector('#submit-new-texto')
+    const btnClose = document.querySelector('#hide-new-texto-modal')
+    btnSubmit.addEventListener('click', save, { once: true })
+    btnClose.addEventListener('click', () => {
+      _modal.close()
+      btnSubmit.removeEventListener('click', save)
+    })
   }
 
   static async fireNew () {
     const btns = document.querySelectorAll('.btn-new-texto')
     const _modal = document.querySelector('#modal-new-texto')
-    const btnClose = document.querySelector('#hide-new-texto-modal')
     btns.forEach(btn => {
       btn.addEventListener('click', (el) => {
         _modal.showModal()
-        moveToTopElement(_modal)
+        moveToTopElement(el.target)
         const temaId = el.target.getAttribute('tema-id')
-        ControllSubjectTexto.submit(temaId)
+        ControllSubjectTexto.submit(temaId, _modal, el.target)
       })
-    })
-    btnClose.addEventListener('click', () => {
-      _modal.close()
     })
   }
 
@@ -107,15 +114,29 @@ export default class ControllSubjectTexto {
   }
 
   static async fireSearch () {
+    let text = ''
+    const interval = () => setInterval(() => {
+      if (text) {
+        window.find(text)
+      }
+    }, 1200)
+
     const content = document.querySelector('#input-search-texto')
     const juizo = document.querySelector('#tema-search-select-juizo')
     const type = document.querySelector('#tema-search-select-type')
     content.addEventListener('focus', async (e) => {
       moveToTopElement(e.target, -200)
+      if (text) {
+        // interval()
+      }
+    })
+    content.addEventListener('focusout', async (e) => {
+      clearInterval(interval)
     })
     content.addEventListener('input', async (e) => {
       try {
-        await handler.search(e.target.value, juizo.value, type.value)
+        text = e.target.value
+        await handler.search(text, juizo.value, type.value)
       } catch (e) { console.log(e) }
     })
   }

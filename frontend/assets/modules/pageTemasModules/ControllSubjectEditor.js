@@ -2,6 +2,7 @@ import TEMPLATES from './editor/templates'
 import moveToTopElement from './utils/moveToTopElement'
 // eslint-disable-next-line no-undef, camelcase
 import pt_BR from './editor/pt_BR'
+import { setOriginal } from './utils/controllPageState'
 
 export default class Editor {
   static config () {
@@ -40,6 +41,7 @@ export default class Editor {
     })
     const btn2 = document.querySelector('#buttonEditor2')
     btn2.addEventListener('click', () => {
+      setOriginal()
       modal.showModal()
     })
     const btn3 = document.querySelector('#hide-modal-editor')

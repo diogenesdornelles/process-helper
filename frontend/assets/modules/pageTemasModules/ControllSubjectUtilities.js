@@ -1,6 +1,9 @@
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
 import generateResult from '../pageUtilitiesModules/generateResult'
 import TEMPLATES from '../pageUtilitiesModules/templates'
 import weightedLogarithmicAverage from '../pageUtilitiesModules/weightedLogarithmicAverage'
+import moveToTopElement from './utils/moveToTopElement'
 
 class ControllSubjectUtilities {
   static prevent () {
@@ -19,6 +22,7 @@ class ControllSubjectUtilities {
       const div2 = document.createElement('div')
       div2.innerHTML = TEMPLATES.rowLi
       table.appendChild(div2)
+      moveToTopElement(div2, -300)
       ControllSubjectUtilities.addFields()
     }, { once: true })
   }
@@ -30,10 +34,10 @@ class ControllSubjectUtilities {
       const liValues = []
       const tiValues = []
       inputsLi.forEach(input => {
-        liValues.push(Number(input.value * 60))
+        liValues.push(Number(input.value.replace(',', '.')) * 60)
       })
       inputsTi.forEach(input => {
-        tiValues.push(Number(input.value))
+        tiValues.push(Number(input.value.replace(',', '.')))
       })
       for (let i = 0; i < tiValues.length; i++) {
         if (!tiValues[i] || !liValues[i]) {
@@ -43,6 +47,23 @@ class ControllSubjectUtilities {
       }
       const avg = weightedLogarithmicAverage(tiValues, liValues)
       generateResult(avg, tiValues, liValues)
+      setTimeout(() => {
+        ControllSubjectUtilities.saveToPDF()
+      }, 500)
+    })
+  }
+
+  static saveToPDF () {
+    document.getElementById('export-pdf-btn').addEventListener('click', function () {
+      // eslint-disable-next-line new-cap
+      const doc = new jsPDF()
+      const table = document.getElementById('table-avg-noise')
+      autoTable(doc, {
+        html: table,
+        startY: 20,
+        theme: 'striped'
+      })
+      doc.save('table.pdf')
     })
   }
 

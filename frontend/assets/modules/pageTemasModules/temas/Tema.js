@@ -1,5 +1,5 @@
 class Tema {
-  constructor () {
+  setData () {
     this.name = document.querySelector('#new-tema-name')
     this.description = document.querySelector('#new-tema-texto-description')
     this.content = document.querySelector('#new-tema-texto-content')
@@ -10,6 +10,7 @@ class Tema {
   }
 
   validate () {
+    this.setData()
     if (this.name.value && this.description.value && this.content.value) {
       this.data = {
         name: this.name.value,
@@ -83,7 +84,7 @@ class Tema {
         data: this.data
       })
       if (response.data === 'success') {
-        window.location.assign('/tema')
+        return true
       }
     } catch (e) {
       console.log(e)

@@ -1,3 +1,19 @@
+/* #patternIdSvg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: -9999;
+  opacity: .1;
+  filter: blur(5px);
+  filter: opacity(25%);
+} */
+
+body {
+  background-color: #ffffff;
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%231e40af' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
 ::-webkit-calendar-picker-indicator{
   background-color: #ffffff;
   padding: 5px;
@@ -65,8 +81,11 @@ body {
   opacity: 1;
 }
 
-#form-new-process {
-  transform: translate(-50%, -50%);
+#temas-backdrop #load-image {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* <div class="tooltip"> // el will be hovered

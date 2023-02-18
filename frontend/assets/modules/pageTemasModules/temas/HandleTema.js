@@ -1,12 +1,18 @@
 import tema from './Tema'
 import moveToTopElement from '../utils/moveToTopElement'
 import reinitApp from '../utils/reinitApp'
+import { setBackdropLoad, removeBackdropLoad } from '../utils/backdropLoad'
+import ControllSubjectTema from '../../pageTemasModules/ControllSubjectTema'
 
 class HandleTema {
   async save () {
     try {
       if (tema.validate()) {
         await tema.save()
+        window.location.assign('/tema')
+        const last = [...document.querySelector('.accordion-heading')].pop()
+        last.click()
+        moveToTopElement(last)
       } else {
         alert('Fornecer dados de todos os campos!')
       }
@@ -77,10 +83,12 @@ class HandleTema {
 
   async getAll () {
     try {
+      await setBackdropLoad(ControllSubjectTema.backdrop)
       const data = await tema.getAll()
       if (data) {
         document.querySelector('#accordion-container').innerHTML = data
         reinitApp()
+        await removeBackdropLoad(ControllSubjectTema.backdrop)
         const div = document.querySelector('#accordion-container')
         moveToTopElement(div)
       }

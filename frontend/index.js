@@ -21,7 +21,7 @@ window.onload = () => {
     ControllSubjectTexto.start()
     ControllSubjectPage.start()
   }
-  if (window.location.pathname === '/utilidades') {
+  if (window.location.pathname === '/media-logaritmica') {
     ControllSubjectUtilities.start()
   }
 }

@@ -8,7 +8,17 @@ const FUSE_OPTIONS = {
   includeScore: true,
   shouldSort: true,
   threshold: 0.6,
-  ignoreLocation: true
+  ignoreLocation: true,
+  keys: [
+    {
+      name: 'content',
+      weight: 0.4
+    },
+    {
+      name: 'description',
+      weight: 0.6
+    }
+  ]
 }
 
 class ServiceTexto {
@@ -35,22 +45,24 @@ class ServiceTexto {
 
   async show (sample, juizo, _type) {
     try {
-      const query = await Tema.find({ juizo, _type }).populate('textos').select({ content: 1 })
+      const query = await Tema.find({ juizo, _type }).populate('textos').select({ content: 1, description: 1 })
       const textos = query.map(item => item.textos)
       const contents = []
       for (let item = 0; item < textos.length; item++) {
         for (let i = 0; i < textos[item].length; i++) {
-          contents.push(textos[item][i].content)
+          contents.push({ content: textos[item][i].content, description: textos[item][i].description })
         }
       }
-      const fuse = new Fuse(contents, FUSE_OPTIONS)
-      let results
-      results = fuse.search(sample)
-      results = results.map(result => {
-        const data = { content: result.item, score: (result.score * 100).toFixed(2) }
-        return data
-      })
-      return results
+      if (contents.length > 0) {
+        const fuse = new Fuse(contents, FUSE_OPTIONS)
+        let results
+        results = fuse.search(sample)
+        results = results.map(result => {
+          const data = { result: result.item, score: (result.score * 100).toFixed(2) }
+          return data
+        })
+        return results
+      }
     } catch (err) { console.log(err) }
   }
 

@@ -3,6 +3,7 @@ import ControllSubjectTexto from '../ControllSubjectTexto'
 import tema from '../temas/Tema'
 import reinitApp from '../utils/reinitApp'
 import texto from './Texto'
+import { setOriginal, hideTemaSearch } from '../utils/controllPageState'
 
 class HandleTexto {
   async copy (el) {
@@ -24,14 +25,14 @@ class HandleTexto {
         if (data) {
           alert('Texto salvo!')
           document.querySelector('#accordion-container').innerHTML = data
-          document.querySelector('#form-new-texto').classList.remove('flex')
-          document.querySelector('#form-new-texto').classList.add('hidden')
           document.querySelector('#new-texto-description').value = ''
           document.querySelector('#new-texto-content').value = ''
           reinitApp()
+          return true
         }
       } else {
         alert('Enviar dados completos!')
+        return false
       }
     } catch (e) { console.log(e) }
   }
@@ -49,7 +50,7 @@ class HandleTexto {
           reinitApp()
         }
       } else {
-        return
+        return false
       }
     } catch (err) { console.log(err) }
   }
@@ -72,21 +73,19 @@ class HandleTexto {
   }
 
   async search (content, juizo, type) {
-    const temas = document.querySelector('#temas-content')
     try {
       if (!content) {
-        document.querySelector('#search-result').innerHTML = ''
-        temas.style.display = 'flex'
+        setOriginal()
         return
       }
       const result = await texto.show(content, juizo, type)
       if (result) {
-        temas.style.display = 'none'
-        document.querySelector('#search-result').innerHTML = result
+        hideTemaSearch()
+        const highlighted = result.replace(new RegExp(content, 'gi'), '<mark>$&</mark>')
+        document.querySelector('#search-result').innerHTML = highlighted
         ControllSubjectTexto.fireCopyResult()
       } else {
-        document.querySelector('#search-result').innerHTML = ''
-        temas.style.display = 'flex'
+        setOriginal()
       }
     } catch (e) { console.log(e) }
   }

@@ -7,7 +7,6 @@ class Texto {
     if (this.description.value && this.content.value) {
       return true
     }
-    alert('Fornecer dados de todos os campos!')
     return false
   }
 

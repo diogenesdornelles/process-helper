@@ -25,6 +25,7 @@ export default class ControllSubjectTema {
     submit.addEventListener('click', async () => {
       try {
         await handler.save()
+        _modal.close()
       } catch (e) { console.log(e) }
     }, { once: true })
   }
@@ -140,6 +141,7 @@ export default class ControllSubjectTema {
   }
 
   static start () {
+    ControllSubjectTema.backdrop = document.querySelector('#temas-backdrop')
     ControllSubjectTema.fireSave()
     ControllSubjectTema.fireUpdate()
     ControllSubjectTema.fireDelete()
