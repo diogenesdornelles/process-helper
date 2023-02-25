@@ -72,23 +72,24 @@ body {
   opacity: 1;
 }
 
-.hidden-text-tema {
+.observed {
   opacity: 0;
   transition: all .6s ease-in-out;
 }
 
-.hidden-text-tema.show-text-tema {
+.observed.show {
   opacity: 1;
 }
 
 #temas-backdrop #load-image {
   background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif');
-  background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
+  margin: auto;
+  margin-top: 20%;
 }
 
-/* <div class="tooltip"> // el will be hovered
+
+/* <div class="tooltip"> // el that will be hovered
     <div class="bottom">
         <h3>Lorem Ipsum</h3>
         <p>Dolor sit amet, consectetur adipiscing elit.</p>

@@ -1,6 +1,6 @@
 class HomeController {
   async index (req, res) {
-    return res.status(200).render('index', { page: 'home' })
+    return res.status(200).render('layout-index', { page: 'home' })
   }
 }
 

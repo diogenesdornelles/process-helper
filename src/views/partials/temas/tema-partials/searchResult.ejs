@@ -11,7 +11,8 @@
         <div class="flex gap-x-3 gap-y-2 p-2 rounded">
         <% } %>
       <div class="flex flex-col w-10/12">
-        <p class="w-full text-justify my-result-description text-xs font-bold"><%=result.result.description%></p>
+        <p class="w-full text-justify my-result-description text-xs font-bold">Descrição: <%=result.result.description%></p>
+        <p class="w-full text-justify my-result-description text-ms font-bold">Conteúdo:</p>
         <p class="w-full text-justify my-result-texto"><%=result.result.content%></p>
       </div>
       <p class="w-1/12 flex items-center justify-center"><%= (100 - result.score).toFixed(2) %>%</p>

@@ -10,9 +10,6 @@ class HandleTema {
       if (tema.validate()) {
         await tema.save()
         window.location.assign('/tema')
-        const last = [...document.querySelector('.accordion-heading')].pop()
-        last.click()
-        moveToTopElement(last)
       } else {
         alert('Fornecer dados de todos os campos!')
       }

@@ -13,7 +13,7 @@ class ChemistriesController {
   async index (req, res) {
     try {
       const nr15data = await getData(PATH_NR15)
-      return res.status(200).render('chemistries', { page: 'chemistries', nr15data })
+      return res.status(200).render('layout-chemistries', { page: 'chemistries', nr15data })
     } catch (err) { console.log(err) }
   }
 }

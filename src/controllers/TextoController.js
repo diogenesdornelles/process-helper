@@ -19,7 +19,7 @@ class TextoController {
     try {
       const results = await service.show(sample, juizo, _type)
       if (results) {
-        return res.status(200).render('./partials/temas/searchResult', { results })
+        return res.status(200).render('./partials/temas/tema-partials/searchResult', { results })
       }
       return res.status(400).json('error')
     } catch (err) {

@@ -4,7 +4,7 @@ class ControleController {
   async index (req, res) {
     try {
       const tables = await service.index()
-      return res.status(200).render('controle', { tables, page: 'controle' })
+      return res.status(200).render('layout-controle', { tables, page: 'controle' })
     } catch (err) { console.log(err) }
   }
 }

@@ -20,14 +20,11 @@ export default class ControllSubjectTexto {
     })
   }
 
-  static async submit (temaId, _modal, el) {
+  static async submit (temaId, modal, el, header) {
     async function save () {
       try {
-        if (await handler.save(temaId)) {
-          _modal.close()
-          moveToTopElement(el)
-        } else {
-          ControllSubjectTexto.submit(temaId, _modal)
+        if (!await handler.save(temaId, modal, el, header)) {
+          ControllSubjectTexto.submit(temaId, modal)
         }
       } catch (e) { console.log(e) }
     }
@@ -35,20 +32,23 @@ export default class ControllSubjectTexto {
     const btnClose = document.querySelector('#hide-new-texto-modal')
     btnSubmit.addEventListener('click', save, { once: true })
     btnClose.addEventListener('click', () => {
-      _modal.close()
+      modal.close()
+      header.click()
       btnSubmit.removeEventListener('click', save)
     })
   }
 
   static async fireNew () {
     const btns = document.querySelectorAll('.btn-new-texto')
-    const _modal = document.querySelector('#modal-new-texto')
+    const modal = document.querySelector('#modal-new-texto')
     btns.forEach(btn => {
       btn.addEventListener('click', (el) => {
-        _modal.showModal()
+        modal.showModal()
         moveToTopElement(el.target)
         const temaId = el.target.getAttribute('tema-id')
-        ControllSubjectTexto.submit(temaId, _modal, el.target)
+        const idHeader = el.target.getAttribute('btn-linked-to')
+        const header = document.querySelector(`#${idHeader}`)
+        ControllSubjectTexto.submit(temaId, modal, el.target, header)
       })
     })
   }
@@ -100,19 +100,6 @@ export default class ControllSubjectTexto {
     })
   }
 
-  static async fireScrollReveal () {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        entry.target.classList.toggle('show-text-tema', entry.isIntersecting)
-      })
-    },
-    {
-      rootMargin: '-200px'
-    })
-    const texties = document.querySelectorAll('.hidden-text-tema')
-    texties.forEach((element) => observer.observe(element))
-  }
-
   static async fireSearch () {
     let text = ''
     const interval = () => setInterval(() => {
@@ -142,7 +129,6 @@ export default class ControllSubjectTexto {
   }
 
   static start () {
-    ControllSubjectTexto.fireScrollReveal()
     ControllSubjectTexto.setEdit()
     ControllSubjectTexto.fireSearch()
     ControllSubjectTexto.fireDelete()

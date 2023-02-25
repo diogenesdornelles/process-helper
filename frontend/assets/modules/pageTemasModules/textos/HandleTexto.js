@@ -4,6 +4,7 @@ import tema from '../temas/Tema'
 import reinitApp from '../utils/reinitApp'
 import texto from './Texto'
 import { setOriginal, hideTemaSearch } from '../utils/controllPageState'
+import moveToTopElement from '../utils/moveToTopElement'
 
 class HandleTexto {
   async copy (el) {
@@ -18,7 +19,7 @@ class HandleTexto {
     Editor.conclusion.innerHTML += `<br>${texto}`
   }
 
-  async save (temaId) {
+  async save (temaId, modal, el, header) {
     try {
       if (texto.validate()) {
         const data = await texto.save(temaId)
@@ -27,6 +28,10 @@ class HandleTexto {
           document.querySelector('#accordion-container').innerHTML = data
           document.querySelector('#new-texto-description').value = ''
           document.querySelector('#new-texto-content').value = ''
+          modal.close()
+          header.click()
+          moveToTopElement(header)
+          moveToTopElement(el)
           reinitApp()
           return true
         }

@@ -2,6 +2,7 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import './assets/css/input.css'
 import './assets/css/style.css'
+import scrollReveal from './assets/modules/pageTemasModules/utils/scrollReveal'
 import Controle from './assets/modules/pageControleModules/Controle'
 import ControllSubjectAccordion from './assets/modules/pageTemasModules/ControllSubjectAccordion'
 import ControllSubjectEditor from './assets/modules/pageTemasModules/ControllSubjectEditor'
@@ -15,6 +16,7 @@ window.onload = () => {
     new Controle().init()
   }
   if (window.location.pathname === '/tema') {
+    scrollReveal()
     ControllSubjectEditor.start()
     ControllSubjectAccordion.start()
     ControllSubjectTema.start()

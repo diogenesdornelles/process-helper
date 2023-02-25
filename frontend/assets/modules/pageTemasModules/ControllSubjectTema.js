@@ -10,22 +10,22 @@ export default class ControllSubjectTema {
     const btn1 = document.querySelector('#btn-open-modal-new-tema')
     const btn2 = document.querySelector('#hide-new-tema-modal')
     const btn3 = document.querySelector('#hide-new-tema-modal-2')
-    const _modal = document.querySelector('#modal-new-tema')
+    const modal = document.querySelector('#modal-new-tema')
     btn1.addEventListener('click', () => {
-      _modal.showModal()
-      moveToTopElement(_modal)
+      modal.showModal()
+      moveToTopElement(modal)
     })
     btn2.addEventListener('click', () => {
-      _modal.close()
+      modal.close()
     })
     btn3.addEventListener('click', () => {
-      _modal.close()
+      modal.close()
     })
     const submit = document.querySelector('#submit-new-tema')
     submit.addEventListener('click', async () => {
       try {
         await handler.save()
-        _modal.close()
+        modal.close()
       } catch (e) { console.log(e) }
     }, { once: true })
   }

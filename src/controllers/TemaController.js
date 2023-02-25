@@ -4,14 +4,14 @@ class TemaController {
   async index (req, res) {
     try {
       const temas = await service.index()
-      return res.status(200).render('tema', { temas, page: 'tema' })
+      return res.status(200).render('layout-tema', { temas, page: 'tema' })
     } catch (err) { console.log(err) }
   }
 
   async getList (req, res) {
     try {
       const temas = await service.getList()
-      return res.status(200).render('./partials/temas/savedTemas', { temas })
+      return res.status(200).render('./partials/temas/tema-partials/savedTemas', { temas })
     } catch (err) { console.log(err) }
   }
 
@@ -19,14 +19,14 @@ class TemaController {
     const { id } = req.params
     try {
       const temas = await service.getOne(id)
-      return res.status(200).render('./partials/temas/bellows', { temas: [temas] })
+      return res.status(200).render('./partials/temas/tema-partials/bellows', { temas: [temas] })
     } catch (err) { console.log(err) }
   }
 
   async getAll (req, res) {
     try {
       const temas = await service.index()
-      return res.status(200).render('./partials/temas/bellows', { temas })
+      return res.status(200).render('./partials/temas/tema-partials/bellows', { temas })
     } catch (err) { console.log(err) }
   }
 
@@ -34,7 +34,7 @@ class TemaController {
     const { _type } = req.params
     try {
       const temas = await service.getType(_type)
-      return res.status(200).render('./partials/temas/bellows', { temas })
+      return res.status(200).render('./partials/temas/tema-partials/bellows', { temas })
     } catch (err) { console.log(err) }
   }
 
@@ -42,7 +42,7 @@ class TemaController {
     const { juizo } = req.params
     try {
       const temas = await service.getJuizo(juizo)
-      return res.status(200).render('./partials/temas/bellows', { temas })
+      return res.status(200).render('./partials/temas/tema-partials/bellows', { temas })
     } catch (err) { console.log(err) }
   }
 
