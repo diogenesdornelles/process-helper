@@ -24,15 +24,14 @@ class HandleTexto {
       if (texto.validate()) {
         const data = await texto.save(temaId)
         if (data) {
-          alert('Texto salvo!')
           document.querySelector('#accordion-container').innerHTML = data
           document.querySelector('#new-texto-description').value = ''
           document.querySelector('#new-texto-content').value = ''
+          reinitApp()
           modal.close()
           header.click()
           moveToTopElement(header)
           moveToTopElement(el)
-          reinitApp()
           return true
         }
       } else {
@@ -77,13 +76,13 @@ class HandleTexto {
     } catch (e) { console.log(e) }
   }
 
-  async search (content, juizo, type) {
+  async search (content, juizo, type, tema) {
     try {
       if (!content) {
         setOriginal()
         return
       }
-      const result = await texto.show(content, juizo, type)
+      const result = await texto.show(content, juizo, type, tema)
       if (result) {
         hideTemaSearch()
         const highlighted = result.replace(new RegExp(content, 'gi'), '<mark>$&</mark>')

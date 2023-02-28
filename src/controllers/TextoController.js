@@ -15,9 +15,9 @@ class TextoController {
   }
 
   async show (req, res) {
-    const { sample, juizo, _type } = req.params
+    const { sample, juizo, _type, tema } = req.params
     try {
-      const results = await service.show(sample, juizo, _type)
+      const results = await service.show(sample, juizo, _type, tema)
       if (results) {
         return res.status(200).render('./partials/temas/tema-partials/searchResult', { results })
       }

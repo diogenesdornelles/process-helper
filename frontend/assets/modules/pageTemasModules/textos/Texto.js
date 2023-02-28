@@ -29,10 +29,10 @@ class Texto {
     }
   }
 
-  async show (sample, juizo, _type) {
+  async show (sample, juizo, _type, tema) {
     try {
       // eslint-disable-next-line no-undef
-      const response = await axios.get(`/texto/${sample}/${juizo}/${_type}`)
+      const response = await axios.get(`/texto/${sample}/${juizo}/${_type}/${tema}`)
       if (response.status < 300) {
         return response.data
       } else {

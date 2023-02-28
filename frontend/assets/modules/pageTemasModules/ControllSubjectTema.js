@@ -141,7 +141,7 @@ export default class ControllSubjectTema {
   }
 
   static start () {
-    ControllSubjectTema.backdrop = document.querySelector('#temas-backdrop')
+    ControllSubjectTema.backdrop = document.querySelector('#backdrop')
     ControllSubjectTema.fireSave()
     ControllSubjectTema.fireUpdate()
     ControllSubjectTema.fireDelete()

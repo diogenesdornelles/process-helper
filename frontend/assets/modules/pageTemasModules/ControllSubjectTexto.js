@@ -102,30 +102,22 @@ export default class ControllSubjectTexto {
 
   static async fireSearch () {
     let text = ''
-    const interval = () => setInterval(() => {
-      if (text) {
-        window.find(text)
-      }
-    }, 1200)
-
     const content = document.querySelector('#input-search-texto')
     const juizo = document.querySelector('#tema-search-select-juizo')
     const type = document.querySelector('#tema-search-select-type')
+    const tema = document.querySelector('#tema-search-select-tema')
     content.addEventListener('focus', async (e) => {
       moveToTopElement(e.target, -200)
-      if (text) {
-        // interval()
-      }
     })
-    content.addEventListener('focusout', async (e) => {
-      clearInterval(interval)
-    })
-    content.addEventListener('input', async (e) => {
+    // eslint-disable-next-line no-undef
+    const debouncedInput = _.debounce(async (e) => {
       try {
         text = e.target.value
-        await handler.search(text, juizo.value, type.value)
+        await handler.search(text, juizo.value, type.value, tema.value)
       } catch (e) { console.log(e) }
-    })
+    }, 500)
+    console.log(typeof debouncedInput)
+    content.addEventListener('input', debouncedInput)
   }
 
   static start () {

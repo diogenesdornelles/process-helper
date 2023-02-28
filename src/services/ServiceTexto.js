@@ -43,9 +43,22 @@ class ServiceTexto {
     }
   }
 
-  async show (sample, juizo, _type) {
+  async show (sample, juizo, _type, tema) {
+    let parameters
+    if (tema === 'todos') {
+      parameters = {
+        juizo,
+        _type
+      }
+    } else {
+      parameters = {
+        juizo,
+        _type,
+        name: tema
+      }
+    }
     try {
-      const query = await Tema.find({ juizo, _type }).populate('textos').select({ content: 1, description: 1 })
+      const query = await Tema.find(parameters).populate('textos').select({ content: 1, description: 1 })
       const textos = query.map(item => item.textos)
       const contents = []
       for (let item = 0; item < textos.length; item++) {

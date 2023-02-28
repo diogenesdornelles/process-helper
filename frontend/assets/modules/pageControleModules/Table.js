@@ -4,6 +4,8 @@ import addObserverTr from './addObserverTr'
 import copyProcessNumber from './copyProcessNumber'
 import fieldsAddListeners from './fieldsAddListeners'
 import setBtnDelTable from './setBtnDelTable'
+import Controle from './Controle'
+import { setBackdropLoad, removeBackdropLoad } from '../pageTemasModules/utils/backdropLoad'
 
 export default class Table {
   constructor () {
@@ -64,10 +66,12 @@ export default class Table {
 
   async get (id, num) {
     try {
+      await setBackdropLoad(Controle.backdrop)
       // eslint-disable-next-line no-undef
       const response = await axios.get(`/table/${id}/${num}`)
       document.getElementById('table-container').innerHTML = response.data
       this.tableInit()
+      await removeBackdropLoad(Controle.backdrop)
     } catch (e) { console.log(e) }
   }
 }

@@ -1,5 +1,8 @@
 <%- include('./partials/index/head') %>
 <body id="body" class="animate__animated animate__fadeIn">
+  <div id="backdrop" class="fixed hidden bg-black opacity-10 h-screen w-screen" style="z-index: 9999;">
+    <div id="load-image" class="w-20 h-20"></div>
+  </div>
   <%- include('./partials/index/navMenu') %>
   <%- include('./partials/controle/controle') %>
   <%- include('./partials/index/footer') %>

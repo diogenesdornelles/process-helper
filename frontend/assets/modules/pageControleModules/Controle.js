@@ -118,6 +118,7 @@ export default class Controle {
   }
 
   init () {
+    Controle.backdrop = document.querySelector('#backdrop')
     this.setFieldProcess()
     this.setFieldSigla()
     this.setFieldStatus()

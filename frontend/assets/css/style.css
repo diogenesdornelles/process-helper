@@ -1,13 +1,3 @@
-/* #patternIdSvg {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  z-index: -9999;
-  opacity: .1;
-  filter: blur(5px);
-  filter: opacity(25%);
-} */
-
 body {
   background-color: #ffffff;
   background-color: #ffffff;
@@ -81,7 +71,11 @@ body {
   opacity: 1;
 }
 
-#temas-backdrop #load-image {
+#backdrop {
+  filter: blur(1px)
+}
+
+#backdrop #load-image {
   background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif');
   background-size: cover;
   margin: auto;

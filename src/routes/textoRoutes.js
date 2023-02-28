@@ -6,7 +6,7 @@ const router = new Router()
 
 router.post('/', isValidReqCreateTexto, TextoController.create)
 
-router.get('/:sample/:juizo/:_type', TextoController.show)
+router.get('/:sample/:juizo/:_type/:tema', TextoController.show)
 
 router.put('/:id', isValidReqUpdateTexto, TextoController.update)
 

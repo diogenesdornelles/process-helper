@@ -11,9 +11,9 @@
         <div class="flex gap-x-3 gap-y-2 p-2 rounded">
         <% } %>
       <div class="flex flex-col w-10/12">
-        <p class="w-full text-justify my-result-description text-xs font-bold">Descrição: <%=result.result.description%></p>
-        <p class="w-full text-justify my-result-description text-ms font-bold">Conteúdo:</p>
-        <p class="w-full text-justify my-result-texto"><%=result.result.content%></p>
+        <p class="w-full text-justify my-result-description text-xs font-bold text-gray-700">Descrição: <%=result.result.description%></p>
+        <p class="w-full text-justify my-result-description text-ms font-bold text-gray-700">Conteúdo:</p>
+        <p class="w-full text-justify my-result-texto text-gray-500"><%=result.result.content%></p>
       </div>
       <p class="w-1/12 flex items-center justify-center"><%= (100 - result.score).toFixed(2) %>%</p>
       <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-lg text-sm text-center w-1/12 btn-copy-texto-result">Copiar</button>
