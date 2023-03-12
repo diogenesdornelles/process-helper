@@ -2,9 +2,9 @@ import service from '../services/ServiceTexto'
 
 class TextoController {
   async create (req, res) {
-    const { id, description, content, juizo, _type } = req.body
+    const { id, description, content, duration } = req.body
     try {
-      const texto = await service.create(id, description, content, juizo, _type)
+      const texto = await service.create(id, description, content, duration)
       if (texto) {
         return res.status(200).json('success')
       }
@@ -34,7 +34,7 @@ class TextoController {
     try {
       const texto = service.update(id, description, content, tema_id)
       if (texto) {
-        return res.status(200).json('success')
+        return res.status(200).render('./partials/temas/tema-partials/inputToken')
       }
       return res.status(400).json('error')
     } catch (err) {

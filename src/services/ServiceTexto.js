@@ -22,12 +22,13 @@ const FUSE_OPTIONS = {
 }
 
 class ServiceTexto {
-  async create (id, description, content) {
+  async create (id, description, content, duration) {
     try {
       const texto = await Texto.create({
         description,
         content,
-        tema_id: id
+        tema_id: id,
+        duration
       })
       await Tema.findOneAndUpdate(
         {

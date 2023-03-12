@@ -1,14 +1,17 @@
 <input type="hidden" value="<%=csrfToken%>" id="_third-csrf">
 <% if ( temas.length > 0 ) { %>
   <% temas.forEach((tema, index) => { %>
+    <!-- CONTAINER ONE TEMA -->
     <div id="container-tema-id-<%= tema._id %>" class="container-one-tema" tema-id="<%= tema._id %>">
       <div>
+        <!-- HEADER TEMA -->
         <button id="accordion-heading-<%= index + 1 %>" tema-id="<%= tema._id %>" type="button" class="accordion-heading mx-auto flex items-center justify-between w-11/12 p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-blue-200 rounded-t-xl focus:ring-4" aria-expanded="true" aria-controls="accordion-body-<%= index + 1 %>">
           <div class="relative group w-fit">
             <input type="text" tema-id="<%= tema._id %>" name="tema" id="tema-input-<%= tema._id %>" value="<%= tema.name %>" class="rounded text-center block py-2.5 px-0 text-sm text-gray-900 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer input-tema-name" placeholder=" " readonly required />
             <label style="pointer-events: none" for="tema-input-<%= tema._id %>" class="label-heading peer-focus:font-large absolute text-2xl text-gray-900 duration-300 transform -translate-y-10 scale-75 top-3 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8 text-white">Tema <%= index + 1 %></label>
           </div>
           <% if (tema._type) { %>
+          <!-- TEMA SELECT TYPE -->
           <select name="type" id="tema-select-type-<%= tema._id %>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-4/12 select-type-tema" placeholder="Tipo">
             <% if (tema._type === 'tempo_especial') { %>
               <option value="tempo_especial" selected>Tempo especial</option>
@@ -28,6 +31,7 @@
           <% } %>
           </select>
           <% if (tema.juizo) { %>
+            <!-- TEMA SELECT JUIZO -->
             <select name="type" id="tema-select-juizo-<%= tema._id %>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-2/12 select-juizo-tema" placeholder="Tipo">
               <% if (tema.juizo === 'substituto') { %>
                 <option value="substituto" selected>Substituto</option>
@@ -39,6 +43,7 @@
               <% } %>
             <% } %>
             </select>
+            <!-- ANCHORS TEMA CHANGE INFO -->
             <a class=" text-gray-800  bg-white hover:text-white border border-blue-200 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center anchor-update-tema" tema-id="<%= tema._id %>">Alterar tema
             </a>
             <a class=" text-gray-800 bg-white hover:text-white border border-blue-200 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center anchor-delete-tema" tema-id="<%= tema._id %>">Deletar tema
@@ -46,24 +51,104 @@
           <svg style="pointer-events: none" data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path style="pointer-events: none" fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
         </button>
       </div>
+      <!-- TEMA BODY -->
       <div id="accordion-body-<%= index + 1 %>" class=" hidden mx-auto accordion-body w-11/12" aria-labelledby="accordion-heading-<%= index + 1 %>">
         <div class=" flex py-2 bg-blue-300 justify-center ">
-          <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center w-4/12  btn-new-texto" btn-linked-to="accordion-heading-<%= index + 1 %>" tema-id="<%= tema._id %>">Novo texto
+          <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center w-4/12  btn-new-texto" btn-to-type="<%= tema._type %>" btn-linked-to="accordion-heading-<%= index + 1 %>" tema-id="<%= tema._id %>">Novo texto
           </button>
         </div>
       <% tema.textos.forEach((texto, _index) => { %>
-        <div class="flex items-center justify-between p-5 border border-b-0 bg-blue-50 hover:bg-blue-100 observed">
+        <% if (_index % 2 === 1) { %>
+          <div class="flex items-center justify-between p-5 border border-b-0 bg-blue-50 hover:bg-blue-200 observed">
+        <% } else { %>
+          <div class="flex items-center justify-between p-5 border border-b-0 bg-blue-100 hover:bg-blue-200 observed">
+        <% } %>
           <h6 class="text-sm font-bold text-gray-600 bg-blue-200 p-1 rounded">Texto: <%=_index + 1%></h6>
+          <!-- TEXTO PARTS -->
           <div class="flex flex-col w-9/12 ">
-            <div class="relative w-full mb-1 group">
-              <input type="text" tema-id="<%= tema._id %>" texto-id="<%= texto._id %>" name="description" id="description-input-<%= texto._id %>" value="<%= texto.description %>" class="rounded text-center mb-3 block py-2.5 px-0 w-full text-sm text-gray-900 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 font-bold peer input-text-description" placeholder=" " readonly required />
+            <!-- TEXTO DESCRIPTION -->
+            <div class="relative w-full group">
+              <input type="text" tema-id="<%= tema._id %>" texto-id="<%= texto._id %>" name="description" id="description-input-<%= texto._id %>" value="<%= texto.description %>" class="rounded text-center mb-1 block py-2.5 px-0 w-full text-sm text-gray-900 border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 font-bold peer input-text-description" placeholder=" " readonly required />
               <label style="pointer-events: none" for="description-input-<%= texto._id %>" class="peer-focus:font-large absolute text-sm text-gray-600 duration-300 transform -translate-y-8 scale-75 top-3 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">Descrição</label>
             </div>
-            <div class="relative w-full mb-1 group">
-              <textarea name="text" id="texto-code-<%=tema._id%>-<%=_index + 1%>" texto-id="<%= texto._id %>" tema-id="<%= tema._id %>" rows="2" class="rounded mb-3 block py-6 px-0 w-full font-medium text-gray-700 indent-7 text-justify text-base border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer h-fit min-h-0 overflow-y-auto break-words textarea-text-content" placeholder=" " readonly required><%=texto.content.replace(/\n/g, '  \n\n\t')%></textarea>
+             <!-- TIME FRAME TSE -->
+            <% if (texto.duration.length > 0 && tema._type === 'tempo_especial') { %>
+              <% const durations = texto.duration.map(date => { %>
+                <% return moment(date).format('L') %>
+              <% }) %>
+              <div class="relative w-full mb-3 group">
+                <h3 class="mb-0 text-xs text-gray-600">Vigência</h3>
+                <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex">
+                  <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+                    <div class="flex items-center pl-2">
+                      <!-- ANALISAR AQUI -->
+                       <% if (durations.includes('28/04/1995')) { %>
+                        <input id="28/04/1995-checkbox-list" type="checkbox" value="01/01/1970,28/04/1995" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 checkbox-time-frame" checked="checked">
+                        <label for="28/04/1995-checkbox-list" class="w-full py-1 ml-1 text-center text-xs rounded bg-blue-400 text-white">Até 28/04/1995</label>
+                      <% } else { %>
+                        <input id="28/04/1995-checkbox-list" type="checkbox" value="01/01/1970,28/04/1995" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 checkbox-time-frame">
+                        <label for="28/04/1995-checkbox-list" class="w-full py-1 ml-1 text-center text-xs rounded text-gray-600">Até 28/04/1995</label>
+                      <% } %>
+                    </div>
+                  </li>
+                  <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+                    <div class="flex items-center pl-2">
+                      <% if (durations.includes('05/03/1997')) { %>
+                        <input id="05/03/1997-checkbox-list" type="checkbox" value="29/04/1995,05/03/1997" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 checkbox-time-frame" checked="checked">
+                        <label for="05/03/1997-checkbox-list" class="w-full py-1 ml-1 text-xs text-center rounded text-white bg-blue-400">Entre 29/04/1995 e 05/03/1997</label>
+                      <% } else { %>
+                        <input id="05/03/1997-checkbox-list" type="checkbox" value="29/04/1995,05/03/1997" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 checkbox-time-frame">
+                        <label for="05/03/1997-checkbox-list" class="w-full py-1 ml-1 text-xs text-center rounded text-gray-600">Entre 29/04/1995 e 05/03/1997</label>
+                       <% } %>
+                    </div>
+                  </li>
+                  <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+                    <div class="flex items-center pl-2">
+                       <% if (durations.includes('02/12/1998')) { %>
+                          <input id="02/12/1998-checkbox-list" type="checkbox" value="06/03/1997,02/12/1998" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame" checked="checked">
+                          <label for="02/12/1998-checkbox-list" class="w-full py-1 ml-1 bg-blue-400 text-center rounded text-xs text-white">Entre 06/03/1997 e 02/12/1998</label>
+                        <% } else { %>
+                          <input id="02/12/1998-checkbox-list" type="checkbox" value="06/03/1997,02/12/1998" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame">
+                          <label for="02/12/1998-checkbox-list" class="w-full py-1 ml-1 text-xs text-center rounded text-gray-600">Entre 06/03/1997 e 02/12/1998</label>
+                        <% } %>
+                    </div>
+                  </li>
+                  <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+                    <div class="flex items-center pl-2">
+                       <% if (durations.includes('18/11/2003')) { %>
+                        <input id="18/11/2003-checkbox-list" type="checkbox" value="03/12/1998,18/11/2003" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame" checked="checked">
+                        <label for="18/11/2003-checkbox-list" class="w-full py-1 ml-1 bg-blue-400 text-center rounded text-xs text-white">Entre 03/12/1998 e 18/11/2003</label>
+                      <% } else { %>
+                        <input id="18/11/2003-checkbox-list" type="checkbox" value="03/12/1998,18/11/2003" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame">
+                        <label for="18/11/2003-checkbox-list" class="w-full py-1 ml-1 text-xs text-center rounded text-gray-600">Entre 03/12/1998 e 18/11/2003</label>
+                      <% } %>
+                    </div>
+                  </li>
+                  <li class="w-full">
+                    <div class="flex items-center pl-2">
+                      <% if (durations.includes('19/11/2003')) { %>
+                        <input id="current-checkbox-list" type="checkbox" value="19/11/2003,current" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame" checked="checked">
+                        <label for="current-checkbox-list" class="w-full py-1 ml-1 bg-blue-400 text-center rounded text-xs text-white">Entre 19/11/2003 e <%= currentDate %></label>
+                      <% } else { %>
+                        <input id="current-checkbox-list" type="checkbox" value="19/11/2003,current" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame">
+                        <label for="current-checkbox-list" class="w-full py-1 ml-1 text-center rounded text-xs text-gray-600">Entre 19/11/2003 e <%= currentDate %></label>
+                      <% } %>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            <!-- included only to allow for effective terms to be inserted into old texts -->
+            <% } %>
+            <% if (texto.duration.length === 0 && tema._type === 'tempo_especial') { %>
+              <%- include('./bellow-parts/date-frame') %>
+            <% } %>
+            <!-- TEXTO CONTENT -->
+            <div class="relative w-full mb-1 mt-3 group">
+              <textarea name="text" id="texto-code-<%=tema._id%>-<%=_index + 1%>" texto-id="<%= texto._id %>" tema-id="<%= tema._id %>" rows="2" class="rounded mb-3 block py-6 px-0 w-full font-medium text-gray-700 indent-10 text-justify text-base border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer h-fit min-h-0 overflow-y-auto break-words textarea-text-content" placeholder=" " readonly required><%=texto.content%></textarea>
               <label for="texto-code-<%=tema._id%>-<%=_index + 1%>" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Texto</label>
             </div>
           </div>
+          <!-- TEXTO BUTTONS -->
           <div class="grid grid-cols-1 w-2/12">
             <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 btn-copiar-texto" id="btn-copiar-texto">Copiar texto
             </button>
@@ -81,5 +166,4 @@
   <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
     <p class="font-bold">Não há temas salvos. Crie um!</p>
   </div>
-  <%- include('./newTema') %>
 <% } %>

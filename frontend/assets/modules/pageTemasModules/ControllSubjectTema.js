@@ -1,5 +1,4 @@
 import handler from './temas/HandleTema'
-// import hideContent from './temas/hideContent'
 import setToTopFunc from './utils/setToTopFunc'
 import textareaAutoExpand from './utils/textareaAutoExpand'
 import moveToTopElement from './utils/moveToTopElement'
@@ -8,9 +7,21 @@ import moveToTopElement from './utils/moveToTopElement'
 export default class ControllSubjectTema {
   static fireSave () {
     const btn1 = document.querySelector('#btn-open-modal-new-tema')
-    const btn2 = document.querySelector('#hide-new-tema-modal')
-    const btn3 = document.querySelector('#hide-new-tema-modal-2')
+    const btn2 = document.querySelector('#btn-hide-new-tema-modal')
+    const btn3 = document.querySelector('#btn-hide-new-tema-modal-2')
     const modal = document.querySelector('#modal-new-tema')
+    const type = document.querySelector('#new-tema-texto-type')
+    const timeFrame = document.querySelector('#time-frame-tse')
+    if (type.value === 'tempo_especial') {
+      timeFrame.style.display = 'block'
+    }
+    type.addEventListener('change', (e) => {
+      if (e.target.value === 'tempo_especial') {
+        timeFrame.style.display = 'block'
+      } else {
+        timeFrame.style.display = 'none'
+      }
+    })
     btn1.addEventListener('click', () => {
       modal.showModal()
       moveToTopElement(modal)
@@ -21,7 +32,7 @@ export default class ControllSubjectTema {
     btn3.addEventListener('click', () => {
       modal.close()
     })
-    const submit = document.querySelector('#submit-new-tema')
+    const submit = document.querySelector('#btn-submit-new-tema')
     submit.addEventListener('click', async () => {
       try {
         await handler.save()
@@ -31,8 +42,8 @@ export default class ControllSubjectTema {
   }
 
   static fireUpdate () {
-    const btns = document.querySelectorAll('.anchor-update-tema')
-    btns.forEach(btn => {
+    const anchors = document.querySelectorAll('.anchor-update-tema')
+    anchors.forEach(btn => {
       btn.addEventListener('click', async (e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -44,8 +55,8 @@ export default class ControllSubjectTema {
   }
 
   static fireDelete () {
-    const btns = document.querySelectorAll('.anchor-delete-tema')
-    btns.forEach(btn => {
+    const anchors = document.querySelectorAll('.anchor-delete-tema')
+    anchors.forEach(btn => {
       btn.addEventListener('click', async (e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -73,8 +84,8 @@ export default class ControllSubjectTema {
   }
 
   static fireType () {
-    const types = document.querySelectorAll('.select-anchor-tema-type')
-    types.forEach(type => {
+    const anchors = document.querySelectorAll('.select-anchor-tema-type')
+    anchors.forEach(type => {
       type.addEventListener('click', async (e) => {
         e.preventDefault()
         try {
@@ -85,8 +96,8 @@ export default class ControllSubjectTema {
   }
 
   static fireJuizo () {
-    const juizos = document.querySelectorAll('.select-anchor-tema-juizo')
-    juizos.forEach(juizo => {
+    const anchors = document.querySelectorAll('.select-anchor-tema-juizo')
+    anchors.forEach(juizo => {
       juizo.addEventListener('click', async (e) => {
         e.preventDefault()
         try {
@@ -97,30 +108,30 @@ export default class ControllSubjectTema {
   }
 
   static fireEdit () {
-    const temas = document.querySelectorAll('.input-tema-name')
-    const types = document.querySelectorAll('.select-type-tema')
-    const juizos = document.querySelectorAll('.select-juizo-tema')
-    temas.forEach(tema => {
+    const inputsTema = document.querySelectorAll('.input-tema-name')
+    const selectsType = document.querySelectorAll('.select-type-tema')
+    const selectJuizo = document.querySelectorAll('.select-juizo-tema')
+    inputsTema.forEach(tema => {
       tema.addEventListener('click', (e) => {
         e.stopPropagation()
       })
     })
-    temas.forEach(tema => {
+    inputsTema.forEach(tema => {
       tema.addEventListener('dblclick', (e) => {
         e.target.removeAttribute('readonly', 'readonly')
       })
     })
-    temas.forEach(tema => {
+    inputsTema.forEach(tema => {
       tema.addEventListener('focusout', (e) => {
         e.target.setAttribute('readonly', 'readonly')
       })
     })
-    types.forEach(type => {
+    selectsType.forEach(type => {
       type.addEventListener('click', (e) => {
         e.stopPropagation()
       })
     })
-    juizos.forEach(type => {
+    selectJuizo.forEach(type => {
       type.addEventListener('click', (e) => {
         e.stopPropagation()
       })

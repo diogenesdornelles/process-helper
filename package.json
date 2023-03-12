@@ -24,8 +24,10 @@
     "helmet": "^6.0.0",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.28",
+    "moment": "^2.29.4",
     "mongoose": "^6.7.2",
     "mongoose-sequence": "^5.3.1",
+    "nouislider": "^15.7.0",
     "regenerator-runtime": "^0.13.10",
     "style-loader": "^3.3.1"
   },

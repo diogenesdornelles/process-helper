@@ -5,6 +5,7 @@ import reinitApp from '../utils/reinitApp'
 import texto from './Texto'
 import { setOriginal, hideTemaSearch } from '../utils/controllPageState'
 import moveToTopElement from '../utils/moveToTopElement'
+import { setBackdropLoad, removeBackdropLoad } from '../utils/backdropLoad'
 
 class HandleTexto {
   async copy (el) {
@@ -19,9 +20,10 @@ class HandleTexto {
     Editor.conclusion.innerHTML += `<br>${texto}`
   }
 
-  async save (temaId, modal, el, header) {
+  async save (temaId, modal, el, header, type) {
     try {
-      if (texto.validate()) {
+      if (texto.validate(type)) {
+        await setBackdropLoad(ControllSubjectTexto.backdrop)
         const data = await texto.save(temaId)
         if (data) {
           document.querySelector('#accordion-container').innerHTML = data
@@ -32,6 +34,7 @@ class HandleTexto {
           header.click()
           moveToTopElement(header)
           moveToTopElement(el)
+          await removeBackdropLoad(ControllSubjectTexto.backdrop)
           return true
         }
       } else {
@@ -45,34 +48,32 @@ class HandleTexto {
     try {
       const textoId = el.getAttribute('texto-id')
       const temaId = el.getAttribute('tema-id')
+      await setBackdropLoad(ControllSubjectTexto.backdrop)
       const response = await texto.update(textoId, temaId)
       if (response) {
-        const data = await tema.getAll()
-        if (data) {
-          document.querySelector('#accordion-container').innerHTML = data
-          alert('Texto atualizado!')
-          reinitApp()
-        }
+        document.querySelector('#_third-csrf').innerHTML = response
       } else {
         return false
       }
+      await removeBackdropLoad(ControllSubjectTexto.backdrop)
     } catch (err) { console.log(err) }
   }
 
   async delete (el) {
     try {
       const textoId = el.getAttribute('texto-id')
+      await setBackdropLoad(ControllSubjectTexto.backdrop)
       const response = await texto.delete(textoId)
       if (response) {
         const data = await tema.getAll()
         if (data) {
           document.querySelector('#accordion-container').innerHTML = data
-          alert('Texto deletado!')
           reinitApp()
         }
       } else {
         return
       }
+      await removeBackdropLoad(ControllSubjectTexto.backdrop)
     } catch (e) { console.log(e) }
   }
 

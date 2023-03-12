@@ -1,3 +1,7 @@
+import moment from 'moment'
+moment().format('L')
+moment.locale('pt-br')
+
 class Tema {
   setData () {
     this.name = document.querySelector('#new-tema-name')
@@ -5,19 +9,36 @@ class Tema {
     this.content = document.querySelector('#new-tema-texto-content')
     this.juizo = document.querySelector('#new-tema-juizo')
     this.type = document.querySelector('#new-tema-texto-type')
+    this.timeFrameOptions = document.querySelectorAll('.time-frame-tse-option')
     this._csrf_3 = document.querySelector('#_third-csrf')
+    this.datesRange = []
     this.data = {}
   }
 
   validate () {
     this.setData()
+    if (this.type.value === 'tempo_especial') {
+      this.timeFrameOptions.forEach(option => {
+        if (option.checked) {
+          this.datesRange.push(option.value.split(','))
+        }
+      })
+    }
+    this.datesRange = this.datesRange.flat()
+    if (this.datesRange.length < 1) {
+      return false
+    }
+    this.datesRangeNormalized = this.datesRange.map(date => {
+      return date !== 'current' ? moment(date, 'DD-MM-YYYY') : 'current'
+    })
     if (this.name.value && this.description.value && this.content.value) {
       this.data = {
         name: this.name.value,
         description: this.description.value,
         content: this.content.value,
         juizo: this.juizo.value,
-        _type: this.type.value
+        _type: this.type.value,
+        duration: this.datesRangeNormalized ? this.datesRangeNormalized : null
       }
       return true
     }
@@ -83,8 +104,8 @@ class Tema {
         _csrf: this._csrf_3.value,
         data: this.data
       })
-      if (response.data === 'success') {
-        return true
+      if (response.status < 300) {
+        return response.data
       }
     } catch (e) {
       console.log(e)
@@ -134,8 +155,7 @@ class Tema {
       }
       )
       if (response.status < 300) {
-        const data = await this.getAll()
-        return data
+        return response.data
       } else {
         return false
       }

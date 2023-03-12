@@ -1,5 +1,10 @@
-// EXAMPLE:
+import moment from 'moment'
+moment().format('L')
+moment.locale('pt-br')
+
 exports.middlewareGlobal = (req, res, next) => {
+  res.locals.moment = moment
+  res.locals.currentDate = moment().format('L')
   next()
 }
 

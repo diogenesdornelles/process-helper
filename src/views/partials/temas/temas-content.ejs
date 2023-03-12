@@ -2,7 +2,7 @@
   <!-- Incluir novo drop com cards dos temas para seleção -->
   <div id="temas-btns" secction="1" class="flex flex-col justify-items-center items-center w-10/12 gap-20 m-auto h-screen tema-section observed">
     <div class="p-16"></div>
-    <div class="grid grid-cols-2 justify-items-center items-center w-10/12 gap-2 border-2 border-blue-600 border-dashed rounded-lg p-4 pl-4 pr-4 pb-16 pt-16 bg-white">
+    <div class="grid grid-cols-2 justify-items-center items-center w-10/12 gap-2 border-2 border-blue-600 border-dashed rounded-lg p-4 pl-4 pr-4 pb-16 pt-16 bg-white shadow-2xl" >
       <h3 class="text-3xl font-bold text-gray-700 mb-6 self-start">Ferramentas rápidas</h3>
       <p></p>
       <%- include('./tema-partials/tabTemas') %>
@@ -13,25 +13,20 @@
       <%- include('./tema-partials/newTema') %>
     </div>
   </div>
-  <div id="tab-search-texto" secction="2" class="flex flex-col justify-items-center items-center w-10/12 m-auto mb-96 gap-20 h-fit tema-section observed">
-    <div class="w-10/12 flex flex-col gap-y-3 border-2 border-blue-600 border-dashed rounded-lg p-4 pl-4 pr-4 pt-4 pb-16 bg-white">
+  <div id="tab-search-texto" secction="2" class="flex flex-col justify-items-center items-center w-10/12 m-auto mb-96 gap-20 h-fit tema-section observed ">
+    <div class="w-10/12 flex flex-col gap-y-3 border-2 border-blue-600 border-dashed rounded-lg p-4 pl-4 pr-4 pt-4 pb-16 bg-white shadow-2xl">
       <%- include('./tema-partials/searchTexto') %>
     </div>
+  </div>
+  <div id="vertical-page-indicator" class="flex flex-col fixed top-32 left-9 mt-10 mb-48 w-1/12 overflow-auto p-2">
+    <%- include('./tema-partials/verticalPageIndicator') %>
   </div>
   <% } %>
   <%- include('./tema-partials/newTexto') %>
   <div id="temas-content" secction="3" class="flex z-0 justify-center tema-section">
-    <div id="accordion-container" data-accordion="collapse" class="p-4 mt-10 mb-48 bg-white m-auto w-9/12 border-2 border-blue-600 border-dashed rounded-lg">
-      <h3 class="text-3xl font-bold text-gray-700 mb-6 self-start">Acordeão</h3>
-      <%- include('./tema-partials/bellows') %>
-    </div>
-    <div class="flex flex-col fixed top-32 right-1 mt-10 mb-48 w-1/12 overflow-auto p-2">
-      <%- include('./tema-partials/verticalTemaIndicator') %>
-    </div>
-    <div class="flex flex-col fixed top-32 left-9 mt-10 mb-48 w-1/12 overflow-auto p-2">
-      <%- include('./tema-partials/verticalPageIndicator') %>
-    </div>
+    <%- include('./tema-partials/accordion-indicators') %>
   </div>
+
 
 
 

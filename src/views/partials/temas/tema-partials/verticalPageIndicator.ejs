@@ -1,15 +1,39 @@
-<h3 class="text-lg font-semibold text-gray-900 mb-5">Nessa página</h3>
-<ol class="relative border-l border-gray-200">
-  <li class="mb-5 ml-4">
-    <div class="bg-gray-200 absolute w-3 h-3 rounded-full mt-1.5 -left-1.5 border border-white" id="page-div-indicator-1"></div>
-    <time id="page-indicator-1" class="text-gray-400 mb-1 text-sm font-normal leading-none hover:text-blue-700 cursor-pointer select-page-indicator">Botões</time>
-  </li>
-  <li class="mb-5 ml-4">
-    <div class="bg-gray-200 absolute w-3 h-3 rounded-full mt-1.5 -left-1.5 border border-white" id="page-div-indicator-2"></div>
-    <time id="page-indicator-2" class="text-gray-400 mb-1 text-sm font-normal leading-none hover:text-blue-700 cursor-pointer select-page-indicator">Busca</time>
-  </li>
-  <li class="mb-5 ml-4">
-    <div class="bg-gray-200 absolute w-3 h-3 rounded-full mt-1.5 -left-1.5 border border-white" id="page-div-indicator-3"></div>
-    <time id="page-indicator-3" class="text-gray-400 mb-1 text-sm font-normal leading-none hover:text-blue-700 cursor-pointer select-page-indicator">Acordeão</time>
-  </li>
-</ol>
+<div data-dial-init class="fixed left-6 bottom-1/2 group">
+  <div id="speed-dial-menu-click" class="flex flex-col items-center hidden mb-4 space-y-2">
+      <button type="button" data-tooltip-target="tooltip-share" data-tooltip-placement="left" id="page-div-indicator-1" class="select-page-indicator flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 shadow-sm hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 focus:outline-none">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;">
+          <path  style="pointer-events: none;" d="M15.6343 4.37431C16.5429 5.33295 17.2052 6.50881 17.5614 7.79596H20V12.2011H17.5614C17.2057 13.4893 16.5434 14.6662 15.6343 15.6257L16.8557 17.7982L13.1443 20L11.9257 17.8275C10.6622 18.155 9.33926 18.155 8.07571 17.8275L6.85571 20L3.14429 17.7982L4.36571 15.6257C3.45664 14.6662 2.79435 13.4893 2.43857 12.2011H0V7.79743H2.43857C2.79435 6.50923 3.45664 5.33231 4.36571 4.37284L3.14286 2.20183L6.85286 0H6.85714L8.07714 2.16954C9.34069 1.84209 10.6636 1.84209 11.9271 2.16954L13.1429 0H13.1457L16.8571 2.20183L15.6357 4.37431H15.6343ZM14.2857 9.99927C14.2857 8.83134 13.8342 7.71125 13.0305 6.8854C12.2267 6.05955 11.1366 5.5956 10 5.5956C8.86336 5.5956 7.77327 6.05955 6.96954 6.8854C6.16582 7.71125 5.71429 8.83134 5.71429 9.99927C5.71429 11.1672 6.16582 12.2873 6.96954 13.1131C7.77327 13.939 8.86336 14.4029 10 14.4029C11.1366 14.4029 12.2267 13.939 13.0305 13.1131C13.8342 12.2873 14.2857 11.1672 14.2857 9.99927Z" fill="#7D7D7D" stroke="black" stroke-width="0.00064"/>
+        </svg>
+      </button>
+      <div id="tooltip-share" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip">
+          Ferramentas
+          <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+      <button type="button" data-tooltip-target="tooltip-print" data-tooltip-placement="left" id="page-div-indicator-2" class="select-page-indicator flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 shadow-sm hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 focus:outline-none ">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"  style="pointer-events: none;">
+          <path opacity="0.1" d="M20.7778 11.8889C20.7778 16.7981 16.7981 20.7778 11.8889 20.7778C6.97969 20.7778 3 16.7981 3 11.8889C3 6.97969 6.97969 3 11.8889 3C16.7981 3 20.7778 6.97969 20.7778 11.8889Z" fill="#7D7D7D" stroke="#787878" stroke-width="2.66667"/>
+          <path  style="pointer-events: none;" d="M18.5556 18.5556L23 23" stroke="#7D7D7D" stroke-width="5.33333" stroke-linecap="round" stroke-linejoin="round"/>
+          <path  style="pointer-events: none;" d="M20.7778 11.8889C20.7778 16.7981 16.7981 20.7778 11.8889 20.7778C6.97969 20.7778 3 16.7981 3 11.8889C3 6.97969 6.97969 3 11.8889 3C16.7981 3 20.7778 6.97969 20.7778 11.8889Z" stroke="#7D7D7D" stroke-width="5.33333"/>
+        </svg>
+      </button>
+      <div id="tooltip-print" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip">
+        Busca
+          <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+      <button type="button" data-tooltip-target="tooltip-download" data-tooltip-placement="left" id="page-div-indicator-3" class="select-page-indicator flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200shadow-sm hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 focus:outline-none">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;">
+          <path  style="pointer-events: none;" d="M21.147 2.55322H16.9284V1.59492C16.9284 1.06498 16.5 0.636612 15.9701 0.636612H14.0534V23.6363H15.9701C16.5 23.6363 16.9284 23.207 16.9284 22.678V21.7196H21.147C22.5203 21.7196 23.6367 20.6022 23.6367 19.2299V5.042C23.6367 3.66965 22.5203 2.55322 21.147 2.55322ZM21.7201 19.2299C21.7201 19.5462 21.4623 19.803 21.147 19.803H16.9284V4.46988H21.147C21.4623 4.46988 21.72 4.72669 21.72 5.042V19.2299H21.7201Z" fill="#7D7D7D" stroke="#7D7D7D" stroke-width="0.142043"/>
+          <path  style="pointer-events: none;" d="M6.38672 1.5946V2.5529H1.59509C1.0651 2.55295 0.636724 2.98226 0.636724 3.51125V20.761C0.636724 21.29 1.0651 21.7193 1.59504 21.7193H6.38672V22.6776C6.38672 23.2066 6.8151 23.6359 7.34504 23.6359H9.26172V0.636292H7.34504C6.8151 0.636292 6.38672 1.0656 6.38672 1.5946ZM6.38672 5.42791H4.47009C3.94014 5.42791 3.51177 5.85722 3.51177 6.38621C3.51177 6.91521 3.94014 7.34452 4.47009 7.34452H6.38677V8.30282H4.47009C3.94014 8.30282 3.51177 8.73214 3.51177 9.26113C3.51177 9.79012 3.94014 10.2194 4.47009 10.2194H6.38677V11.1777H4.47009C3.94014 11.1777 3.51177 11.6071 3.51177 12.136C3.51177 12.665 3.94014 13.0944 4.47009 13.0944H6.38677V14.0527H4.47009C3.94014 14.0527 3.51177 14.482 3.51177 15.011C3.51177 15.54 3.94014 15.9693 4.47009 15.9693H6.38677V16.9276H4.47009C3.94014 16.9276 3.51177 17.3569 3.51177 17.8859C3.51177 18.4149 3.94014 18.8442 4.47009 18.8442H6.38677V19.8025H2.55341V4.46956H6.38672V5.42791Z" fill="#7D7D7D" stroke="#7D7D7D" stroke-width="0.142043"/>
+          <path d="M12.1363 0.636292H11.178V23.636H12.1363V0.636292Z" fill="#7D7D7D" stroke="#7D7D7D" stroke-width="0.142043"/>
+        </svg>
+      </button>
+      <div id="tooltip-download" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip">
+          Acordeão
+          <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+  </div>
+  <button type="button" data-dial-toggle="speed-dial-menu-click" data-dial-trigger="click" aria-controls="speed-dial-menu-click" aria-expanded="false" class="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14 hover:bg-blue-800  focus:ring-4 focus:ring-blue-300 focus:outline-none">
+      <svg aria-hidden="true" class="w-8 h-8 transition-transform group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+      <span class="sr-only">Open</span>
+  </button>
+</div>

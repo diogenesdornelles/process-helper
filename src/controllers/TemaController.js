@@ -47,10 +47,11 @@ class TemaController {
   }
 
   async create (req, res) {
-    const { description, name, content, juizo, _type } = req.body.data
+    const { description, name, content, juizo, _type, duration } = req.body.data
     try {
-      const response = await service.create(description, name, content, juizo, _type)
-      return res.status(200).json(response)
+      await service.create(description, name, content, juizo, _type, duration)
+      const temas = await service.index()
+      return res.status(200).render('./partials/temas/tema-partials/accordion-indicators', { temas })
     } catch (err) {
       console.log(err)
     }
@@ -62,7 +63,7 @@ class TemaController {
     try {
       const tema = await service.update(id, name, juizo, _type)
       if (tema) {
-        return res.status(200).json('success')
+        return res.status(200).render('./partials/temas/tema-partials/inputToken')
       }
       return res.status(400).json('error updating')
     } catch (err) {
@@ -75,7 +76,8 @@ class TemaController {
     try {
       const tema = await service.delete(id)
       if (tema) {
-        return res.status(200).json('success')
+        const temas = await service.index()
+        return res.status(200).render('./partials/temas/tema-partials/accordion-indicators', { temas })
       }
       return res.status(400).json('error deleting')
     } catch (e) { console.log(e) }

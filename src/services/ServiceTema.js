@@ -37,7 +37,7 @@ class ServiceTema {
     } catch (err) { console.log(err) }
   }
 
-  async create (description, name, content, juizo, _type) {
+  async create (description, name, content, juizo, _type, duration) {
     try {
       const tema = await Tema.create({
         name,
@@ -47,7 +47,8 @@ class ServiceTema {
       const texto = await Texto.create({
         description,
         content,
-        tema_id: tema.id
+        tema_id: tema.id,
+        duration
       })
       await Tema.findByIdAndUpdate(tema._id, {
         $push: {

@@ -15,6 +15,10 @@ const TextoSchema = new mongoose.Schema({
     trim: true,
     allowNull: false
   },
+  duration: {
+    type: Array,
+    allowNull: true
+  },
   tema_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Tema'

@@ -1,9 +1,33 @@
 import tema from '../temas/Tema'
+import moment from 'moment'
+moment().format('L')
+moment.locale('pt-br')
 
 class Texto {
-  validate () {
+  setData () {
     this.description = document.querySelector('#new-texto-description')
     this.content = document.querySelector('#new-texto-content')
+    this.timeFrameOptions = document.querySelectorAll('.checkbox-time-frame')
+    this.datesRange = []
+  }
+
+  validate (type) {
+    this.setData()
+    if (type === 'tempo_especial') {
+      this.timeFrameOptions.forEach(option => {
+        if (option.checked) {
+          this.datesRange.push(option.value.split(','))
+        }
+      })
+    }
+    this.datesRange = this.datesRange.flat()
+    if (this.datesRange.length < 1) {
+      return false
+    }
+    this.datesRangeNormalized = this.datesRange.map(date => {
+      return date !== 'current' ? moment(date, 'DD-MM-YYYY') : 'current'
+    })
+
     if (this.description.value && this.content.value) {
       return true
     }
@@ -18,7 +42,8 @@ class Texto {
         _csrf: this._csrf_3.value,
         description: this.description.value,
         content: this.content.value,
-        id
+        id,
+        duration: this.datesRangeNormalized ? this.datesRangeNormalized : null
       })
       if (response.status < 300) {
         const data = await tema.getAll()

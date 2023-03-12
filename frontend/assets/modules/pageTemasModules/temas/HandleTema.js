@@ -8,8 +8,14 @@ class HandleTema {
   async save () {
     try {
       if (tema.validate()) {
-        await tema.save()
-        window.location.assign('/tema')
+        setBackdropLoad(ControllSubjectTema.backdrop)
+        const data = await tema.save()
+        document.querySelector('#temas-content').innerHTML = data
+        removeBackdropLoad(ControllSubjectTema.backdrop)
+        const lastHeader = [...document.querySelectorAll('.accordion-heading')].pop()
+        reinitApp()
+        lastHeader.click()
+        moveToTopElement(lastHeader)
       } else {
         alert('Fornecer dados de todos os campos!')
       }
@@ -19,10 +25,11 @@ class HandleTema {
   async update (btn) {
     try {
       const temaId = btn.getAttribute('tema-id')
-      const data = await tema.update(temaId)
-      if (data) {
-        document.querySelector('#accordion-container').innerHTML = data
-        alert('Tema atualizado com sucesso!')
+      await setBackdropLoad(ControllSubjectTema.backdrop)
+      const response = await tema.update(temaId)
+      if (response) {
+        document.querySelector('#_third-csrf').innerHTML = response
+        await removeBackdropLoad(ControllSubjectTema.backdrop)
         reinitApp()
       }
     } catch (err) { console.error(err) }
@@ -32,10 +39,11 @@ class HandleTema {
     if (confirm('Deseja deletar o tema?')) {
       try {
         const temaId = btn.getAttribute('tema-id')
+        await setBackdropLoad(ControllSubjectTema.backdrop)
         const data = await tema.delete(temaId)
         if (data) {
-          document.querySelector('#accordion-container').innerHTML = data
-          alert('Tema deletado com sucesso!')
+          document.querySelector('#temas-content').innerHTML = data
+          await removeBackdropLoad(ControllSubjectTema.backdrop)
           reinitApp()
         }
       } catch (err) { console.error(err) }
@@ -45,10 +53,12 @@ class HandleTema {
   async getOne (el) {
     const temaId = el.getAttribute('id')
     try {
+      await setBackdropLoad(ControllSubjectTema.backdrop)
       const data = await tema.getOne(temaId)
       if (data) {
         document.querySelector('#accordion-container').innerHTML = data
         reinitApp()
+        await removeBackdropLoad(ControllSubjectTema.backdrop)
         document.querySelector('#dropdownList').classList.add('hidden')
         const btn = document.querySelector(`BUTTON[tema-id="${temaId}"]`)
         moveToTopElement(btn)
@@ -69,9 +79,11 @@ class HandleTema {
   }
 
   async getList () {
+    await setBackdropLoad(ControllSubjectTema.backdrop)
     const data = await tema.getList()
     if (data) {
       document.getElementById('dropdownList').innerHTML = data
+      await removeBackdropLoad(ControllSubjectTema.backdrop)
       try {
         await this.fireGetOne()
       } catch (e) { console.log(e) }
@@ -96,10 +108,12 @@ class HandleTema {
     type.addEventListener('click', async (e) => {
       e.preventDefault()
       try {
+        await setBackdropLoad(ControllSubjectTema.backdrop)
         const data = await tema.getType(e.target.href)
         if (data) {
           document.querySelector('#accordion-container').innerHTML = data
           reinitApp()
+          await removeBackdropLoad(ControllSubjectTema.backdrop)
           document.querySelector('#dropdownDefaultTemasType').click()
           const div = document.querySelector('#accordion-container')
           moveToTopElement(div)
@@ -110,10 +124,12 @@ class HandleTema {
 
   async getJuizo (juizo) {
     try {
+      await setBackdropLoad(ControllSubjectTema.backdrop)
       const data = await tema.getJuizo(juizo)
       if (data) {
         document.querySelector('#accordion-container').innerHTML = data
         reinitApp()
+        await removeBackdropLoad(ControllSubjectTema.backdrop)
         document.querySelector('#dropdownDefaultTemasJuizo').click()
         const div = document.querySelector('#accordion-container')
         moveToTopElement(div)

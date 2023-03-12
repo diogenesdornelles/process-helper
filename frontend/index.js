@@ -6,7 +6,7 @@ import scrollReveal from './assets/modules/pageTemasModules/utils/scrollReveal'
 import Controle from './assets/modules/pageControleModules/Controle'
 import ControllSubjectAccordion from './assets/modules/pageTemasModules/ControllSubjectAccordion'
 import ControllSubjectEditor from './assets/modules/pageTemasModules/ControllSubjectEditor'
-import ControllSubjectPage from './assets/modules/pageTemasModules/ControllSubjectPage'
+import ControllSubjectPageTema from './assets/modules/pageTemasModules/ControllSubjectPageTema'
 import ControllSubjectTema from './assets/modules/pageTemasModules/ControllSubjectTema'
 import ControllSubjectTexto from './assets/modules/pageTemasModules/ControllSubjectTexto'
 import ControllSubjectUtilities from './assets/modules/pageTemasModules/ControllSubjectUtilities'
@@ -21,7 +21,7 @@ window.onload = () => {
     ControllSubjectAccordion.start()
     ControllSubjectTema.start()
     ControllSubjectTexto.start()
-    ControllSubjectPage.start()
+    ControllSubjectPageTema.start()
   }
   if (window.location.pathname === '/media-logaritmica') {
     ControllSubjectUtilities.start()

@@ -1,6 +1,5 @@
 body {
   background-color: #ffffff;
-  background-color: #ffffff;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%231e40af' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 }
 
@@ -75,12 +74,32 @@ body {
   filter: blur(1px)
 }
 
+#vertical-tema-indicator {
+  height: 75vh;
+  direction:rtl;
+}
+
+#vertical-tema-indicator::-webkit-scrollbar {
+  height: 10vh;
+}
+
+#vertical-tema-indicator h3,
+#vertical-tema-indicator ol {
+  direction:ltr;
+}
+
 #backdrop #load-image {
   background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif');
   background-size: cover;
   margin: auto;
   margin-top: 20%;
 }
+
+input[type="range"] {
+  margin: 0;
+  -webkit-appearance: slider-vertical
+}
+
 
 
 /* <div class="tooltip"> // el that will be hovered

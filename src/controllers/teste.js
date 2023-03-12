@@ -33,9 +33,17 @@
 
 // console.log(quimicos)
 
-import moment from 'moment'
+const moment = require('moment')
 moment().format('L')
 moment.locale('pt-br')
 
-const date = moment('18/03/2011').format('L')
-console.log(date)
+// const date = moment('18/03/2011', 'DD-MM-YYYY')
+// console.log(date)
+
+const dates = ['01/05/1978', '05/08/1999']
+
+const newDates = dates.map(date => {
+  return date !== 'current' ? moment(date, 'DD-MM-YYYY') : 'current'
+})
+
+console.log(newDates)

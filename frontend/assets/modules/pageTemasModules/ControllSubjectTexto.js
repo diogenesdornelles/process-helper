@@ -1,5 +1,6 @@
 import moveToTopElement from './utils/moveToTopElement'
 import handler from './textos/HandleTexto'
+import { setOriginal } from './utils/controllPageState'
 
 export default class ControllSubjectTexto {
   static fireCopy () {
@@ -20,10 +21,10 @@ export default class ControllSubjectTexto {
     })
   }
 
-  static async submit (temaId, modal, el, header) {
+  static async submit (temaId, modal, el, header, type) {
     async function save () {
       try {
-        if (!await handler.save(temaId, modal, el, header)) {
+        if (!await handler.save(temaId, modal, el, header, type)) {
           ControllSubjectTexto.submit(temaId, modal)
         }
       } catch (e) { console.log(e) }
@@ -45,10 +46,15 @@ export default class ControllSubjectTexto {
       btn.addEventListener('click', (el) => {
         modal.showModal()
         moveToTopElement(el.target)
+        const dateFrame = document.querySelector('#div-date-frame')
+        const type = el.target.getAttribute('btn-to-type')
+        if (type === 'tempo_especial') {
+          dateFrame.classList.remove('hidden')
+        }
         const temaId = el.target.getAttribute('tema-id')
         const idHeader = el.target.getAttribute('btn-linked-to')
         const header = document.querySelector(`#${idHeader}`)
-        ControllSubjectTexto.submit(temaId, modal, el.target, header)
+        ControllSubjectTexto.submit(temaId, modal, el.target, header, type)
       })
     })
   }
@@ -113,14 +119,34 @@ export default class ControllSubjectTexto {
     const debouncedInput = _.debounce(async (e) => {
       try {
         text = e.target.value
-        await handler.search(text, juizo.value, type.value, tema.value)
+        if (text.length > 1) {
+          await handler.search(text, juizo.value, type.value, tema.value)
+        } else {
+          document.querySelector('#search-result').innerHTML = ''
+          setOriginal()
+        }
       } catch (e) { console.log(e) }
     }, 500)
-    console.log(typeof debouncedInput)
     content.addEventListener('input', debouncedInput)
+    juizo.addEventListener('change', () => {
+      document.querySelector('#search-result').innerHTML = ''
+      content.value = ''
+      setOriginal()
+    })
+    type.addEventListener('change', () => {
+      document.querySelector('#search-result').innerHTML = ''
+      content.value = ''
+      setOriginal()
+    })
+    tema.addEventListener('change', () => {
+      document.querySelector('#search-result').innerHTML = ''
+      content.value = ''
+      setOriginal()
+    })
   }
 
   static start () {
+    ControllSubjectTexto.backdrop = document.querySelector('#backdrop')
     ControllSubjectTexto.setEdit()
     ControllSubjectTexto.fireSearch()
     ControllSubjectTexto.fireDelete()
