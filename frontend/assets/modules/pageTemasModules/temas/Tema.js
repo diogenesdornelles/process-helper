@@ -1,6 +1,4 @@
 import moment from 'moment'
-moment().format('L')
-moment.locale('pt-br')
 
 class Tema {
   setData () {
@@ -29,7 +27,7 @@ class Tema {
       return false
     }
     this.datesRangeNormalized = this.datesRange.map(date => {
-      return date !== 'current' ? moment(date, 'DD-MM-YYYY') : 'current'
+      return date !== 'current' ? moment(date) : 'current'
     })
     if (this.name.value && this.description.value && this.content.value) {
       this.data = {

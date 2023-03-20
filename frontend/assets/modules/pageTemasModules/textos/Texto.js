@@ -1,13 +1,11 @@
 import tema from '../temas/Tema'
 import moment from 'moment'
-moment().format('L')
-moment.locale('pt-br')
 
 class Texto {
   setData () {
     this.description = document.querySelector('#new-texto-description')
     this.content = document.querySelector('#new-texto-content')
-    this.timeFrameOptions = document.querySelectorAll('.checkbox-time-frame')
+    this.timeFrameOptions = document.querySelectorAll('.new-texto-checkbox-time-frame')
     this.datesRange = []
   }
 
@@ -25,7 +23,7 @@ class Texto {
       return false
     }
     this.datesRangeNormalized = this.datesRange.map(date => {
-      return date !== 'current' ? moment(date, 'DD-MM-YYYY') : 'current'
+      return date !== 'current' ? moment(date) : 'current'
     })
 
     if (this.description.value && this.content.value) {

@@ -17,7 +17,41 @@
       <textarea name="text" id="new-texto-content" rows="2" class="mb-3 block py-6 px-0 w-full text-sm text-gray-900 border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required ></textarea>
       <label for="new-tema-texto" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Texto</label>
     </div>
-    <%- include('./bellow-parts/date-frame') %>
+    <div class="relative z-0 w-full mb-1 group">
+      <h3 class="mb-2 text-xs text-gray-600">Vigência</h3>
+      <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex">
+        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+          <div class="flex items-center pl-2">
+            <input id="new-texto-28/04/1995-checkbox-list" type="checkbox" value="1970-01-01,1995-04-28" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 new-texto-checkbox-time-frame">
+            <label for="28/04/1995-checkbox-list" class="w-full py-1 ml-1 text-center text-xs rounded text-gray-600">Até 28/04/1995</label>
+          </div>
+        </li>
+        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+          <div class="flex items-center pl-2">
+            <input id="new-texto-05/03/1997-checkbox-list" type="checkbox" value="1995-04-29,1997-03-05" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 new-texto-checkbox-time-frame">
+            <label for="05/03/1997-checkbox-list" class="w-full py-1 ml-1 text-xs text-center rounded text-gray-600">Entre 29/04/1995 e 05/03/1997</label>
+          </div>
+        </li>
+        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+          <div class="flex items-center pl-2">
+            <input id="new-texto-02/12/1998-checkbox-list" type="checkbox" value="1997-03-06,1998-12-02" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 new-texto-checkbox-time-frame">
+            <label for="02/12/1998-checkbox-list" class="w-full py-1 ml-1 text-xs text-center rounded text-gray-600">Entre 06/03/1997 e 02/12/1998</label>
+          </div>
+        </li>
+        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+          <div class="flex items-center pl-2">
+            <input id="new-texto-18/11/2003-checkbox-list" type="checkbox" value="1998-12-03,2003-11-18" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 new-texto-checkbox-time-frame">
+            <label for="18/11/2003-checkbox-list" class="w-full py-1 ml-1 text-xs text-center rounded text-gray-600">Entre 03/12/1998 e 18/11/2003</label>
+          </div>
+        </li>
+        <li class="w-full">
+          <div class="flex items-center pl-2">
+            <input id="new-texto-current-checkbox-list" type="checkbox" value="2003-11-19,current" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 new-texto-checkbox-time-frame">
+            <label for="current-checkbox-list" class="w-full py-1 ml-1 text-center rounded text-xs text-gray-600">Entre 19/11/2003 e <%= currentDate %></label>
+          </div>
+        </li>
+      </ul>
+    </div>
     <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
       <button id="submit-new-texto" type="button" class="w-1/2 m-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Enviar</button>
     </div>

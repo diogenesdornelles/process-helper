@@ -74,7 +74,7 @@
              <!-- TIME FRAME TSE -->
             <% if (texto.duration.length > 0 && tema._type === 'tempo_especial') { %>
               <% const durations = texto.duration.map(date => { %>
-                <% return moment(date).format('L') %>
+                <% return moment(date).format('DD/MM/YYYY') %>
               <% }) %>
               <div class="relative w-full mb-3 group">
                 <h3 class="mb-0 text-xs text-gray-600">Vigência</h3>
@@ -83,7 +83,7 @@
                     <div class="flex items-center pl-2">
                       <!-- ANALISAR AQUI -->
                        <% if (durations.includes('28/04/1995')) { %>
-                        <input id="28/04/1995-checkbox-list" type="checkbox" value="01/01/1970,28/04/1995" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 checkbox-time-frame" checked="checked">
+                        <input id="28/04/1995-checkbox-list" type="checkbox" value="01/01/1970,28/04/1995" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 checkbox-time-frame" checked="true">
                         <label for="28/04/1995-checkbox-list" class="w-full py-1 ml-1 text-center text-xs rounded bg-blue-400 text-white">Até 28/04/1995</label>
                       <% } else { %>
                         <input id="28/04/1995-checkbox-list" type="checkbox" value="01/01/1970,28/04/1995" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 checkbox-time-frame">
@@ -94,7 +94,7 @@
                   <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
                     <div class="flex items-center pl-2">
                       <% if (durations.includes('05/03/1997')) { %>
-                        <input id="05/03/1997-checkbox-list" type="checkbox" value="29/04/1995,05/03/1997" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 checkbox-time-frame" checked="checked">
+                        <input id="05/03/1997-checkbox-list" type="checkbox" value="29/04/1995,05/03/1997" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 checkbox-time-frame" checked="true">
                         <label for="05/03/1997-checkbox-list" class="w-full py-1 ml-1 text-xs text-center rounded text-white bg-blue-400">Entre 29/04/1995 e 05/03/1997</label>
                       <% } else { %>
                         <input id="05/03/1997-checkbox-list" type="checkbox" value="29/04/1995,05/03/1997" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 checkbox-time-frame">
@@ -105,7 +105,7 @@
                   <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
                     <div class="flex items-center pl-2">
                        <% if (durations.includes('02/12/1998')) { %>
-                          <input id="02/12/1998-checkbox-list" type="checkbox" value="06/03/1997,02/12/1998" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame" checked="checked">
+                          <input id="02/12/1998-checkbox-list" type="checkbox" value="06/03/1997,02/12/1998" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame" checked="true">
                           <label for="02/12/1998-checkbox-list" class="w-full py-1 ml-1 bg-blue-400 text-center rounded text-xs text-white">Entre 06/03/1997 e 02/12/1998</label>
                         <% } else { %>
                           <input id="02/12/1998-checkbox-list" type="checkbox" value="06/03/1997,02/12/1998" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame">
@@ -116,7 +116,7 @@
                   <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
                     <div class="flex items-center pl-2">
                        <% if (durations.includes('18/11/2003')) { %>
-                        <input id="18/11/2003-checkbox-list" type="checkbox" value="03/12/1998,18/11/2003" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame" checked="checked">
+                        <input id="18/11/2003-checkbox-list" type="checkbox" value="03/12/1998,18/11/2003" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame" checked="true">
                         <label for="18/11/2003-checkbox-list" class="w-full py-1 ml-1 bg-blue-400 text-center rounded text-xs text-white">Entre 03/12/1998 e 18/11/2003</label>
                       <% } else { %>
                         <input id="18/11/2003-checkbox-list" type="checkbox" value="03/12/1998,18/11/2003" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame">
@@ -127,7 +127,7 @@
                   <li class="w-full">
                     <div class="flex items-center pl-2">
                       <% if (durations.includes('19/11/2003')) { %>
-                        <input id="current-checkbox-list" type="checkbox" value="19/11/2003,current" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame" checked="checked">
+                        <input id="current-checkbox-list" type="checkbox" value="19/11/2003,current" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame" checked="true">
                         <label for="current-checkbox-list" class="w-full py-1 ml-1 bg-blue-400 text-center rounded text-xs text-white">Entre 19/11/2003 e <%= currentDate %></label>
                       <% } else { %>
                         <input id="current-checkbox-list" type="checkbox" value="19/11/2003,current" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2 checkbox-time-frame">
@@ -139,7 +139,7 @@
               </div>
             <!-- included only to allow for effective terms to be inserted into old texts -->
             <% } %>
-            <% if (texto.duration.length === 0 && tema._type === 'tempo_especial') { %>
+            <% if (texto.duration.length < 1 && tema._type === 'tempo_especial') { %>
               <%- include('./bellow-parts/date-frame') %>
             <% } %>
             <!-- TEXTO CONTENT -->

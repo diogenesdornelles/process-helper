@@ -3,7 +3,7 @@ import MongoStore from 'connect-mongo'
 require('dotenv').config()
 
 const sessionOptions = session({
-  secret: 'HBkjhbGKnbg33ccsxs22gbhFUKBGcrrvjhjvgvnjkjjvgvRRCdxhbJHNhV',
+  secret: process.env.SESS_SECRET,
   store: MongoStore.create({ mongoUrl: process.env.CONNSTRING }),
   resave: false,
   saveUninitialized: false,
